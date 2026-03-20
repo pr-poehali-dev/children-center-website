@@ -175,16 +175,48 @@ export default function Index() {
             <div key={i} className={`absolute rounded-full blur-3xl ${cls}`} />
           ))}
         </div>
-        <div className="max-w-6xl mx-auto px-4 py-16 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          <div>
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold shadow-sm mb-6">
-              <span>🌈</span> Комфортное пространство для детей
+        <div className="max-w-6xl mx-auto px-4 py-16 relative z-10">
+
+          {/* ВЕРХНИЙ БЛОК: название + цветок */}
+          <div className="flex flex-col lg:flex-row items-center gap-10 mb-12">
+
+            {/* Название */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold shadow-sm mb-4">
+                <span>🌈</span> Комфортное пространство для детей
+              </div>
+              <h1 className="font-pacifico text-5xl md:text-6xl lg:text-7xl text-[#2a6e8c] leading-tight mb-3">
+                Рыбка Долли
+              </h1>
+              <p className="font-pacifico text-2xl md:text-3xl text-[#f7a825]">Дети наше всё!</p>
             </div>
-            <h1 className="font-pacifico text-5xl md:text-6xl lg:text-7xl text-[#2a6e8c] leading-tight mb-4">
-              Рыбка Долли
-            </h1>
-            <p className="font-pacifico text-2xl md:text-3xl text-[#f7a825] mb-6">Дети наше всё!</p>
-            <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
+
+            {/* ЦВЕТОК из 3 кружков — кружки перекрываются */}
+            <div className="flex-shrink-0 relative w-[340px] h-[340px]">
+              {/* верхний кружок по центру */}
+              <div className="absolute w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-2xl"
+                style={{ top: 0, left: '50%', transform: 'translateX(-50%)' }}>
+                <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c9c6c2de-6fa6-4603-b1dd-47cf3c59d10d.png"
+                  alt="Занятие 1" className="w-full h-full object-cover object-center" />
+              </div>
+              {/* нижний левый */}
+              <div className="absolute w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-2xl"
+                style={{ bottom: 0, left: 0 }}>
+                <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/b5abbf02-664c-4904-a795-366abad23a95.png"
+                  alt="Занятие 2" className="w-full h-full object-cover object-center" />
+              </div>
+              {/* нижний правый */}
+              <div className="absolute w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-2xl"
+                style={{ bottom: 0, right: 0 }}>
+                <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/7c6c1780-f350-491b-85cc-f59152886e65.png"
+                  alt="Занятие 3" className="w-full h-full object-cover object-center" />
+              </div>
+            </div>
+          </div>
+
+          {/* НИЖНИЙ БЛОК: текст + кнопки */}
+          <div className="max-w-2xl">
+            <p className="text-lg text-gray-600 leading-relaxed mb-8">
               Детский развивающий центр, где каждый ребёнок чувствует себя особенным. Мягкая адаптация, творческое развитие и качественная подготовка к школе.
             </p>
             <div className="flex flex-wrap gap-3 mb-8">
@@ -194,7 +226,7 @@ export default function Index() {
                 </span>
               ))}
             </div>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-10">
               <button
                 onClick={() => scrollTo("запись")}
                 className="px-8 py-4 bg-[#e85d3b] text-white font-bold text-lg rounded-2xl hover:bg-[#c94d2e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
@@ -207,24 +239,16 @@ export default function Index() {
               >
                 Наши программы →
               </button>
-              <a
-                href="https://vk.com/app6379730_-179759189#l=6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-[#4f86f7] text-white font-bold text-lg rounded-2xl hover:bg-[#3570e0] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
-              >
+              <a href="https://vk.com/app6379730_-179759189#l=6" target="_blank" rel="noopener noreferrer"
+                className="px-8 py-4 bg-[#4f86f7] text-white font-bold text-lg rounded-2xl hover:bg-[#3570e0] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                 🏠 Подробнее о садике →
               </a>
-              <a
-                href="https://vk.com/app6379730_-179759189#l=8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-[#f7c948] text-gray-800 font-bold text-lg rounded-2xl hover:bg-[#e6b830] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
-              >
+              <a href="https://vk.com/app6379730_-179759189#l=8" target="_blank" rel="noopener noreferrer"
+                className="px-8 py-4 bg-[#f7c948] text-gray-800 font-bold text-lg rounded-2xl hover:bg-[#e6b830] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
                 ☀️ Смены летнего клуба →
               </a>
             </div>
-            <div className="mt-10 flex gap-8">
+            <div className="flex gap-8">
               {[["200+", "счастливых семей"], ["10+", "опытных педагогов"], ["6", "программ развития"]].map(([num, label]) => (
                 <div key={label}>
                   <div className="font-pacifico text-3xl text-[#2a6e8c]">{num}</div>
@@ -234,55 +258,6 @@ export default function Index() {
             </div>
           </div>
 
-          {/* ЦВЕТОК ИЗ ФОТО */}
-          <div className="relative flex items-center justify-center h-[480px]">
-            {/* Лепесток верхний */}
-            <div className="absolute w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-white"
-              style={{ top: '0px', left: '50%', transform: 'translateX(-50%)' }}>
-              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c9c2de-6fa6-4603-b1dd-47cf3c59d10d.png" alt="Занятие 1"
-                className="w-full h-full object-cover object-top" onError={(e) => { (e.target as HTMLImageElement).src = "https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c9c6c2de-6fa6-4603-b1dd-47cf3c59d10d.png"; }} />
-            </div>
-            {/* Лепесток нижний левый */}
-            <div className="absolute w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-white"
-              style={{ bottom: '20px', left: '10%' }}>
-              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/b5abbf02-664c-4904-a795-366abad23a95.png" alt="Занятие 2"
-                className="w-full h-full object-cover object-top" />
-            </div>
-            {/* Лепесток нижний правый */}
-            <div className="absolute w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-white"
-              style={{ bottom: '20px', right: '10%' }}>
-              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/7c6c1780-f350-491b-85cc-f59152886e65.png" alt="Занятие 3"
-                className="w-full h-full object-cover object-top" />
-            </div>
-            {/* Центр цветка — логотип */}
-            <div className="absolute w-28 h-28 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-white z-10"
-              style={{ top: '50%', left: '50%', transform: 'translate(-50%, -30%)' }}>
-              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c4844e39-f0a4-402d-b73b-86467b249168.png"
-                alt="Рыбка Долли" className="w-full h-full object-contain p-1" />
-            </div>
-            {/* Декоративные точки */}
-            <div className="absolute w-5 h-5 rounded-full bg-yellow-400 shadow-md" style={{ top: '28%', left: '20%' }} />
-            <div className="absolute w-3 h-3 rounded-full bg-[#e85d3b] shadow-md" style={{ top: '20%', right: '22%' }} />
-            <div className="absolute w-4 h-4 rounded-full bg-[#2a8c6e] shadow-md" style={{ bottom: '15%', left: '40%' }} />
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-lg px-5 py-3">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">🎉</span>
-                <div>
-                  <div className="font-bold text-sm text-gray-800">Открытые занятия</div>
-                  <div className="text-xs text-gray-500">каждую субботу</div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-2xl shadow-lg px-4 py-2">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">⭐</span>
-                <div>
-                  <div className="font-bold text-sm text-gray-800">5.0 рейтинг</div>
-                  <div className="text-xs text-gray-700">100+ отзывов</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
