@@ -63,10 +63,10 @@ const services = [
 ];
 
 const specialists = [
-  { name: "Анна Сергеевна", role: "Старший воспитатель", exp: "12 лет опыта", emoji: "👩‍🏫", color: "#fff0ed" },
-  { name: "Мария Петровна", role: "Логопед", exp: "8 лет опыта", emoji: "🗣️", color: "#e8f8f3" },
-  { name: "Дарья Ивановна", role: "Педагог английского", exp: "6 лет опыта", emoji: "🌍", color: "#e8f4fd" },
-  { name: "Елена Николаевна", role: "Воспитатель ясельной группы", exp: "10 лет опыта", emoji: "🧸", color: "#fffbeb" },
+  { name: "Ирина Павловна", role: "Администратор центра", exp: "", emoji: "", color: "#fff0ed", photo: "https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/a240adac-ebb2-455a-8777-e1d81b688a4e.jpg" },
+  { name: "Мария Петровна", role: "Логопед", exp: "8 лет опыта", emoji: "🗣️", color: "#e8f8f3", photo: "" },
+  { name: "Дарья Ивановна", role: "Педагог английского", exp: "6 лет опыта", emoji: "🌍", color: "#e8f4fd", photo: "" },
+  { name: "Елена Николаевна", role: "Воспитатель ясельной группы", exp: "10 лет опыта", emoji: "🧸", color: "#fffbeb", photo: "" },
 ];
 
 const prices = [
@@ -344,13 +344,16 @@ export default function Index() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {specialists.map((s) => (
               <div key={s.name} className="rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="h-44 flex items-center justify-center text-7xl" style={{ background: s.color }}>
-                  {s.emoji}
+                <div className="h-44 flex items-center justify-center overflow-hidden" style={{ background: s.color }}>
+                  {s.photo
+                    ? <img src={s.photo} alt={s.name} className="w-full h-full object-cover object-top" />
+                    : <span className="text-7xl">{s.emoji}</span>
+                  }
                 </div>
                 <div className="bg-white p-5">
                   <div className="font-bold text-gray-800 mb-1">{s.name}</div>
                   <div className="text-sm text-[#e85d3b] font-medium mb-1">{s.role}</div>
-                  <div className="text-xs text-gray-400">{s.exp}</div>
+                  {s.exp && <div className="text-xs text-gray-400">{s.exp}</div>}
                 </div>
               </div>
             ))}
