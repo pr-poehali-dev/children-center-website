@@ -536,8 +536,8 @@ export default function Index() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { emoji: "📍", title: "Адрес", lines: ["ул. Солнечная, д. 15", "Москва"], color: "#fff0ed" },
-              { emoji: "📞", title: "Телефон", lines: ["+7 (495) 123-45-67", "пн–пт: 8:00 – 19:00"], color: "#e8f8f3" },
+              { emoji: "📍", title: "Адрес", lines: ["ул. Циолковского, 12", "г. Керчь"], color: "#fff0ed" },
+              { emoji: "📞", title: "Телефон", lines: ["+7 (988) 152-16-98", "+7 (978) 712-03-53"], color: "#e8f8f3" },
               { emoji: "✉️", title: "Email и соцсети", lines: ["info@solnyshko.ru", "ВКонтакте / Телеграм"], color: "#fffbeb" },
             ].map((c) => (
               <div key={c.title} className="bg-white rounded-3xl p-8 text-center shadow-sm hover:shadow-md transition-all">
