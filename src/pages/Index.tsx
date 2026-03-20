@@ -113,10 +113,10 @@ export default function Index() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-3xl">🌟</span>
+            <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c4844e39-f0a4-402d-b73b-86467b249168.png" alt="Рыбка Долли" className="h-12 w-12 object-contain rounded-xl" />
             <div>
-              <div className="font-pacifico text-xl text-[#e85d3b] leading-none">СолнышкоЦентр</div>
-              <div className="text-xs text-gray-400 leading-none">детский развивающий центр</div>
+              <div className="font-pacifico text-xl text-[#e85d3b] leading-none">Рыбка Долли</div>
+              <div className="text-xs text-gray-400 leading-none">Дети наше всё!</div>
             </div>
           </div>
           <div className="hidden lg:flex items-center gap-1">
@@ -556,10 +556,10 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">🌟</span>
+              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c4844e39-f0a4-402d-b73b-86467b249168.png" alt="Рыбка Долли" className="h-12 w-12 object-contain rounded-xl" />
               <div>
-                <div className="font-pacifico text-xl text-yellow-300">СолнышкоЦентр</div>
-                <div className="text-sm text-gray-400">Детский развивающий центр</div>
+                <div className="font-pacifico text-xl text-yellow-300">Рыбка Долли</div>
+                <div className="text-sm text-gray-400">Дети наше всё!</div>
               </div>
             </div>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-400">
@@ -569,7 +569,7 @@ export default function Index() {
                 </button>
               ))}
             </div>
-            <div className="text-sm text-gray-500">© 2024 СолнышкоЦентр</div>
+            <div className="text-sm text-gray-500">© 2024 Рыбка Долли</div>
           </div>
         </div>
       </footer>
