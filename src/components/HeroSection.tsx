@@ -66,18 +66,14 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
             ))}
           </div>
           <div className="flex flex-wrap gap-4 mb-8">
-            <button onClick={() => scrollTo("запись")}
-              className="px-8 py-4 bg-[#e85d3b] text-white font-bold text-lg rounded-2xl hover:bg-[#c94d2e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-              Записаться на экскурсию
-            </button>
-            <button onClick={() => scrollTo("услуги")}
-              className="px-8 py-4 bg-white text-gray-700 font-bold text-lg rounded-2xl hover:bg-gray-50 transition-all shadow-md">
-              Программы развития →
-            </button>
             <a href="https://vk.com/app6379730_-179759189#l=6" target="_blank" rel="noopener noreferrer"
               className="px-8 py-4 bg-[#4f86f7] text-white font-bold text-lg rounded-2xl hover:bg-[#3570e0] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
               🏠 Подробнее о садике →
             </a>
+            <button onClick={() => scrollTo("запись")}
+              className="px-8 py-4 bg-[#e85d3b] text-white font-bold text-lg rounded-2xl hover:bg-[#c94d2e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+              Записаться на экскурсию
+            </button>
             <a href="https://vk.com/app6379730_-179759189#l=8" target="_blank" rel="noopener noreferrer"
               className="px-8 py-4 bg-[#f7c948] text-gray-800 font-bold text-lg rounded-2xl hover:bg-[#e6b830] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
               ☀️ Смены летнего клуба →
