@@ -30,7 +30,7 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
             </div>
             <div className="absolute rounded-full overflow-hidden border-[5px] border-white shadow-2xl"
               style={{ width: 230, height: 230, bottom: 0, left: 0 }}>
-              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/b5abbf02-664c-4904-a795-366abad23a95.png"
+              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/d707734d-8b6d-4ee2-9d51-0e454f84f5e0.png"
                 alt="Занятие 2" className="w-full h-full object-cover object-center" />
             </div>
             <div className="absolute rounded-full overflow-hidden border-[5px] border-white shadow-2xl"
