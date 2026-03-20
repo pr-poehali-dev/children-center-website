@@ -66,7 +66,7 @@ const specialists = [
   { name: "Ирина Павловна", role: "Администратор центра", exp: "", emoji: "", color: "#fff0ed", photo: "https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/a240adac-ebb2-455a-8777-e1d81b688a4e.jpg" },
   { name: "Мария Петровна", role: "Логопед", exp: "8 лет опыта", emoji: "🗣️", color: "#e8f8f3", photo: "" },
   { name: "Дарья Ивановна", role: "Педагог английского", exp: "6 лет опыта", emoji: "🌍", color: "#e8f4fd", photo: "" },
-  { name: "Елена Николаевна", role: "Воспитатель ясельной группы", exp: "10 лет опыта", emoji: "🧸", color: "#fffbeb", photo: "" },
+  { name: "Ирина Васильевна", role: "Воспитатель ясельной группы, педагог-психолог", exp: "", emoji: "", color: "#e8f4fd", photo: "https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/9782c412-48ea-40cb-9a43-4b0fb7066715.jpg" },
 ];
 
 const prices = [
