@@ -61,8 +61,8 @@ export default function Navbar({ menuOpen, setMenuOpen, scrollTo }: NavbarProps)
             <a href="tel:+79881521698" className="flex items-center justify-center gap-2 px-5 py-3 bg-[#2a8c6e] text-white font-bold rounded-full">
               <Icon name="Phone" size={18} /> +7 988 152-16-98
             </a>
-            <a href="tel:+79771200353" className="flex items-center justify-center gap-2 px-5 py-3 bg-[#2a8c6e] text-white font-bold rounded-full">
-              <Icon name="Phone" size={18} /> +7 977 120-03-53
+            <a href="tel:+79787120353" className="flex items-center justify-center gap-2 px-5 py-3 bg-[#2a8c6e] text-white font-bold rounded-full">
+              <Icon name="Phone" size={18} /> +7 978 712-03-53
             </a>
           </div>
         </div>
