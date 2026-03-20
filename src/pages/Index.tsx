@@ -345,9 +345,9 @@ export default function Index() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {specialists.map((s) => (
               <div key={s.name} className="rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="h-44 flex items-center justify-center overflow-hidden" style={{ background: s.color }}>
+                <div className="h-64 flex items-center justify-center overflow-hidden" style={{ background: s.color }}>
                   {s.photo
-                    ? <img src={s.photo} alt={s.name} className="w-full h-full object-cover object-top" />
+                    ? <img src={s.photo} alt={s.name} className="w-full h-full object-cover object-[center_20%]" />
                     : <span className="text-7xl">{s.emoji}</span>
                   }
                 </div>
