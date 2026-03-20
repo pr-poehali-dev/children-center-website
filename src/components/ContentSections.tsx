@@ -169,10 +169,10 @@ export default function ContentSections() {
             <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Наши специалисты</h2>
             <p className="text-gray-500 max-w-lg mx-auto">Опытные педагоги, которые любят свою работу</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {specialists.map((s) => (
               <div key={s.name} className="rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="h-64 flex items-center justify-center overflow-hidden" style={{ background: s.color }}>
+                <div className="h-44 sm:h-56 md:h-64 flex items-center justify-center overflow-hidden" style={{ background: s.color }}>
                   {s.photo
                     ? <img src={s.photo} alt={s.name} className="w-full h-full object-cover object-[center_20%]" />
                     : <span className="text-7xl">{s.emoji}</span>
@@ -202,7 +202,7 @@ export default function ContentSections() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {gallery.map((img, i) => (
               <div key={i} className={`rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] ${i === 0 ? "md:col-span-2" : ""}`}>
-                <img src={img} alt={`Галерея ${i + 1}`} className="w-full h-52 object-cover" />
+                <img src={img} alt={`Галерея ${i + 1}`} className="w-full h-36 sm:h-44 md:h-52 object-cover" />
               </div>
             ))}
           </div>
@@ -221,8 +221,8 @@ export default function ContentSections() {
           </div>
           <div className="bg-[#fdf9f5] rounded-3xl overflow-hidden shadow-sm">
             {prices.map((item, i) => (
-              <div key={item.service} className={`flex items-center justify-between px-6 py-4 hover:bg-[#fff0ed] transition-colors ${i !== prices.length - 1 ? "border-b border-white" : ""}`}>
-                <span className="text-gray-700 font-medium flex items-center gap-3">
+              <div key={item.service} className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 hover:bg-[#fff0ed] transition-colors ${i !== prices.length - 1 ? "border-b border-white" : ""}`}>
+                <span className="text-gray-700 font-medium flex flex-wrap items-center gap-2 text-sm sm:text-base">
                   {item.service}
                   {item.service === "Летний клуб" && PROMO_ACTIVE && (
                     <span className="inline-flex items-center gap-1 bg-[#e85d3b] text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
@@ -250,7 +250,7 @@ export default function ContentSections() {
             <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Что говорят родители</h2>
           </div>
           <div className="relative max-w-2xl mx-auto">
-            <div className="bg-white rounded-3xl p-8 shadow-sm min-h-[220px] flex flex-col justify-between">
+            <div className="bg-white rounded-3xl p-5 sm:p-8 shadow-sm min-h-[220px] flex flex-col justify-between">
               <div>
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: reviews[reviewIndex].stars }).map((_, i) => (
