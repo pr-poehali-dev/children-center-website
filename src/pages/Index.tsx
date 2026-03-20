@@ -177,40 +177,37 @@ export default function Index() {
         </div>
         <div className="max-w-6xl mx-auto px-4 py-12 relative z-10">
 
-          {/* СТРОКА 1: название + цветок в одну линию */}
-          <div className="flex flex-wrap items-center gap-8 mb-8">
+          {/* СТРОКА 1: цветок слева + название справа */}
+          <div className="flex flex-wrap items-center gap-10 mb-8">
 
-            {/* НАЗВАНИЕ */}
-            <div>
-              <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold shadow-sm mb-3">
-                <span>🌈</span> Комфортное пространство для детей
-              </div>
-              <h1 className="font-pacifico text-6xl md:text-7xl lg:text-8xl text-[#2a6e8c] leading-none mb-2">
-                Рыбка Долли
-              </h1>
-              <p className="font-pacifico text-2xl md:text-3xl text-[#f7a825]">Дети наше всё!</p>
-            </div>
-
-            {/* ЦВЕТОК — прямо справа от названия */}
+            {/* ЦВЕТОК слева */}
             <div className="relative flex-shrink-0" style={{ width: 420, height: 420 }}>
-              {/* верх по центру */}
               <div className="absolute rounded-full overflow-hidden border-[5px] border-white shadow-2xl"
                 style={{ width: 230, height: 230, top: 0, left: '50%', transform: 'translateX(-50%)' }}>
                 <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c9c6c2de-6fa6-4603-b1dd-47cf3c59d10d.png"
                   alt="Занятие 1" className="w-full h-full object-cover object-center" />
               </div>
-              {/* нижний левый */}
               <div className="absolute rounded-full overflow-hidden border-[5px] border-white shadow-2xl"
                 style={{ width: 230, height: 230, bottom: 0, left: 0 }}>
                 <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/b5abbf02-664c-4904-a795-366abad23a95.png"
                   alt="Занятие 2" className="w-full h-full object-cover object-center" />
               </div>
-              {/* нижний правый */}
               <div className="absolute rounded-full overflow-hidden border-[5px] border-white shadow-2xl"
                 style={{ width: 230, height: 230, bottom: 0, right: 0 }}>
                 <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/7c6c1780-f350-491b-85cc-f59152886e65.png"
                   alt="Занятие 3" className="w-full h-full object-cover object-center" />
               </div>
+            </div>
+
+            {/* НАЗВАНИЕ справа */}
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold shadow-sm mb-4">
+                <span>🌈</span> Комфортное пространство для детей
+              </div>
+              <h1 className="font-pacifico text-6xl md:text-7xl lg:text-8xl text-[#2a6e8c] leading-none mb-3">
+                Рыбка Долли
+              </h1>
+              <p className="font-pacifico text-2xl md:text-3xl text-[#f7a825]">Дети наше всё!</p>
             </div>
 
           </div>
