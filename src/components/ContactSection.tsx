@@ -132,6 +132,7 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
             {[
               { emoji: "📍", title: "Адрес", lines: ["ул. Циолковского, 12", "г. Керчь"], color: "#fff0ed" },
               { emoji: "📞", title: "Телефон", lines: ["+7 (988) 152-16-98", "+7 (978) 712-03-53"], color: "#e8f8f3" },
+              { emoji: "🕐", title: "Режим работы", lines: ["Понедельник — пятница", "8:00 — 18:00"], color: "#fef9e7" },
             ].map((c) => (
               <div key={c.title} className="bg-white rounded-3xl p-8 text-center shadow-sm hover:shadow-md transition-all">
                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4" style={{ background: c.color }}>
