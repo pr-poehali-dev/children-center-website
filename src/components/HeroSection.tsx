@@ -45,7 +45,7 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold shadow-sm mb-4">
               <span>🌈</span> Комфортное пространство для детей
             </div>
-            <h1 className="font-pacifico text-6xl md:text-7xl lg:text-8xl text-[#2a6e8c] leading-none mb-3">
+            <h1 className="font-pacifico md:text-7xl lg:text-8xl text-[#2a6e8c] leading-none mb-3 text-8xl text-center">
               Рыбка Долли
             </h1>
             <p className="font-pacifico text-2xl md:text-3xl text-[#f7a825]">Дети наше всё!</p>
