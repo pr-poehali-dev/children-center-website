@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 
 const PROMO_ACTIVE = new Date() < new Date("2026-05-15T23:59:59");
@@ -53,9 +53,18 @@ const gallery = [
 
 export default function ContentSections() {
   const [reviewIndex, setReviewIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
-  const prevReview = () => setReviewIndex((i) => (i - 1 + reviews.length) % reviews.length);
-  const nextReview = () => setReviewIndex((i) => (i + 1) % reviews.length);
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => {
+      setReviewIndex((i) => (i + 1) % reviews.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [paused]);
+
+  const prevReview = () => { setPaused(true); setReviewIndex((i) => (i - 1 + reviews.length) % reviews.length); };
+  const nextReview = () => { setPaused(true); setReviewIndex((i) => (i + 1) % reviews.length); };
 
   return (
     <>
@@ -266,7 +275,7 @@ export default function ContentSections() {
               </button>
               <div className="flex gap-2">
                 {reviews.map((_, i) => (
-                  <button key={i} onClick={() => setReviewIndex(i)}
+                  <button key={i} onClick={() => { setPaused(true); setReviewIndex(i); }}
                     className={`w-2 h-2 rounded-full transition-all ${i === reviewIndex ? "bg-[#e85d3b] w-5" : "bg-gray-300"}`} />
                 ))}
               </div>
