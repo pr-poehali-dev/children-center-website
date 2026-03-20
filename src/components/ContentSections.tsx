@@ -39,7 +39,13 @@ const reviews = [
   { name: "Наталья В.", text: "Занимались с логопедом — за 3 месяца результат превзошёл все ожидания. Очень профессиональный специалист.", stars: 5, child: "дочка, 5 лет" },
 ];
 
-const gallery = [HERO_IMG, READING_IMG, CRAFT_IMG, HERO_IMG, READING_IMG, CRAFT_IMG];
+const gallery = [
+  "https://cdn.poehali.dev/files/b7e139c8-93e0-4bbb-b9d3-83e343cd59db.png",
+  "https://cdn.poehali.dev/files/bb83b1db-3a9f-4e90-ab10-e6980a71620a.png",
+  "https://cdn.poehali.dev/files/3e522020-93c1-4155-ac37-1067785b8111.png",
+  "https://cdn.poehali.dev/files/4b6ccfe2-5c36-4d8f-86a3-2d2d0ba4a2df.png",
+  "https://cdn.poehali.dev/files/3611f407-5c5c-4b26-89e4-891e2f8aaff8.png",
+];
 
 export default function ContentSections() {
   return (
