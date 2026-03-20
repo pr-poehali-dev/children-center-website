@@ -123,6 +123,11 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
             </div>
             <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Как нас найти</h2>
           </div>
+          <div className="rounded-3xl overflow-hidden shadow-sm mb-6 h-64 sm:h-80">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?ll=36.476560%2C45.360614&z=16&pt=36.476560,45.360614,pm2rdm&text=Керчь%2C+ул.+Циолковского%2C+12"
+              width="100%" height="100%" frameBorder="0" allowFullScreen title="Карта" />
+          </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { emoji: "📍", title: "Адрес", lines: ["ул. Циолковского, 12", "г. Керчь"], color: "#fff0ed" },
