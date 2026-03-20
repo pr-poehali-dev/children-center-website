@@ -214,6 +214,14 @@ export default function Index() {
               >
                 Подробнее о садике →
               </a>
+              <a
+                href="https://vk.com/app6379730_-179759189#l=8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-[#fffbeb] text-[#d4840a] font-bold text-lg rounded-2xl hover:bg-[#fef3c7] transition-all shadow-md"
+              >
+                ☀️ Смены летнего клуба →
+              </a>
             </div>
             <div className="mt-10 flex gap-8">
               {[["200+", "счастливых семей"], ["10+", "опытных педагогов"], ["6", "программ развития"]].map(([num, label]) => (
