@@ -66,7 +66,7 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
             ))}
           </div>
           <div className="flex flex-wrap gap-4 mb-8">
-            <a href="https://vk.com/app6379730_-179759189#l=6" target="_blank" rel="noopener noreferrer"
+            <a href="https://vk.com/app6379730_-179759189#l=6" target="_blank"
               className="px-8 py-4 bg-[#4f86f7] text-white font-bold text-lg rounded-2xl hover:bg-[#3570e0] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
               🏠 Подробнее о садике →
             </a>
