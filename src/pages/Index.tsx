@@ -210,15 +210,15 @@ export default function Index() {
                 href="https://vk.com/app6379730_-179759189#l=6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 bg-[#fff0ed] text-[#e85d3b] font-bold text-lg rounded-2xl hover:bg-[#ffe4de] transition-all shadow-md"
+                className="px-8 py-4 bg-[#4f86f7] text-white font-bold text-lg rounded-2xl hover:bg-[#3570e0] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
-                Подробнее о садике →
+                🏠 Подробнее о садике →
               </a>
               <a
                 href="https://vk.com/app6379730_-179759189#l=8"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 bg-[#fffbeb] text-[#d4840a] font-bold text-lg rounded-2xl hover:bg-[#fef3c7] transition-all shadow-md"
+                className="px-8 py-4 bg-[#f7c948] text-gray-800 font-bold text-lg rounded-2xl hover:bg-[#e6b830] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
               >
                 ☀️ Смены летнего клуба →
               </a>
