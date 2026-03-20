@@ -18,10 +18,26 @@ interface ContactSectionProps {
 export default function ContactSection({ scrollTo }: ContactSectionProps) {
   const [formData, setFormData] = useState({ name: "", phone: "", service: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("https://functions.poehali.dev/67816b86-b772-48a1-859b-33286ed93c0d", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+    } catch {
+      setError("Не удалось отправить заявку. Позвоните нам по телефону.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -85,9 +101,10 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
                   className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all resize-none"
                 />
               </div>
-              <button type="submit"
-                className="w-full py-4 bg-[#e85d3b] text-white font-bold text-lg rounded-2xl hover:bg-[#c94d2e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                Отправить заявку 🚀
+              {error && <p className="text-center text-sm text-red-500">{error}</p>}
+              <button type="submit" disabled={loading}
+                className="w-full py-4 bg-[#e85d3b] text-white font-bold text-lg rounded-2xl hover:bg-[#c94d2e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed">
+                {loading ? "Отправляем..." : "Отправить заявку 🚀"}
               </button>
               <p className="text-center text-xs text-gray-400">
                 Нажимая кнопку, вы соглашаетесь на обработку персональных данных
