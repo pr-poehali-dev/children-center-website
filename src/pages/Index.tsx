@@ -538,7 +538,7 @@ export default function Index() {
             {[
               { emoji: "📍", title: "Адрес", lines: ["ул. Циолковского, 12", "г. Керчь"], color: "#fff0ed" },
               { emoji: "📞", title: "Телефон", lines: ["+7 (988) 152-16-98", "+7 (978) 712-03-53"], color: "#e8f8f3" },
-              { emoji: "✉️", title: "Email и соцсети", lines: ["info@solnyshko.ru", "ВКонтакте / Телеграм"], color: "#fffbeb" },
+              { emoji: "✉️", title: "Email и соцсети", lines: ["ribkadolli@mail.ru", "ВКонтакте / Телеграм"], color: "#fffbeb" },
             ].map((c) => (
               <div key={c.title} className="bg-white rounded-3xl p-8 text-center shadow-sm hover:shadow-md transition-all">
                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4" style={{ background: c.color }}>
