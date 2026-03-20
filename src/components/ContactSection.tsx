@@ -126,14 +126,19 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               { emoji: "📍", title: "Адрес", lines: ["ул. Циолковского, 12", "г. Керчь"], color: "#fff0ed" },
-              { emoji: "📞", title: "Телефон", lines: ["+7 (988) 152-16-98", "+7 (978) 712-03-53"], color: "#e8f8f3" },
+              { emoji: "📞", title: "Телефон", lines: ["+7 (988) 152-16-98", "+7 (977) 120-03-53"], color: "#e8f8f3" },
             ].map((c) => (
               <div key={c.title} className="bg-white rounded-3xl p-8 text-center shadow-sm hover:shadow-md transition-all">
                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4" style={{ background: c.color }}>
                   {c.emoji}
                 </div>
                 <h3 className="font-bold text-gray-800 mb-3">{c.title}</h3>
-                {c.lines.map((line) => (
+                {c.title === "Телефон" ? c.lines.map((line, i) => (
+                  <a key={line} href={`tel:+${line.replace(/\D/g, "")}`}
+                    className="block text-[#2a8c6e] font-semibold text-sm hover:underline">
+                    {line}
+                  </a>
+                )) : c.lines.map((line) => (
                   <p key={line} className="text-gray-600 text-sm">{line}</p>
                 ))}
               </div>
