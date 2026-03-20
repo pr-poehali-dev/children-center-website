@@ -58,7 +58,7 @@ export default function ContentSections() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
-                <img src={READING_IMG} alt="Занятие в центре" className="w-full h-80 object-cover" />
+                <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/f9682350-a1f1-4927-bfec-64a418f4fe76.png" alt="Занятие в центре" className="w-full h-80 object-cover" />
               </div>
               <div className="mt-4 grid grid-cols-3 gap-4">
                 {[
