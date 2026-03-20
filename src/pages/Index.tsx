@@ -177,12 +177,13 @@ export default function Index() {
         </div>
         <div className="max-w-6xl mx-auto px-4 py-16 grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div>
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm text-[#e85d3b] font-semibold shadow-sm mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold shadow-sm mb-6">
               <span>🌈</span> Комфортное пространство для детей
             </div>
-            <h1 className="font-pacifico text-4xl md:text-5xl lg:text-6xl text-gray-800 leading-tight mb-6">
-              Здесь каждый ребёнок <span className="text-[#e85d3b]">расцветает</span>
+            <h1 className="font-pacifico text-5xl md:text-6xl lg:text-7xl text-[#2a6e8c] leading-tight mb-4">
+              Рыбка Долли
             </h1>
+            <p className="font-pacifico text-2xl md:text-3xl text-[#f7a825] mb-6">Дети наше всё!</p>
             <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
               Детский развивающий центр, где каждый ребёнок чувствует себя особенным. Мягкая адаптация, творческое развитие и качественная подготовка к школе.
             </p>
@@ -226,16 +227,43 @@ export default function Index() {
             <div className="mt-10 flex gap-8">
               {[["200+", "счастливых семей"], ["10+", "опытных педагогов"], ["6", "программ развития"]].map(([num, label]) => (
                 <div key={label}>
-                  <div className="font-pacifico text-3xl text-[#e85d3b]">{num}</div>
+                  <div className="font-pacifico text-3xl text-[#2a6e8c]">{num}</div>
                   <div className="text-sm text-gray-500">{label}</div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img src={HERO_IMG} alt="Дети в центре" className="w-full h-96 object-cover" />
+
+          {/* ЦВЕТОК ИЗ ФОТО */}
+          <div className="relative flex items-center justify-center h-[480px]">
+            {/* Лепесток верхний */}
+            <div className="absolute w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-white"
+              style={{ top: '0px', left: '50%', transform: 'translateX(-50%)' }}>
+              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c9c2de-6fa6-4603-b1dd-47cf3c59d10d.png" alt="Занятие 1"
+                className="w-full h-full object-cover object-top" onError={(e) => { (e.target as HTMLImageElement).src = "https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c9c6c2de-6fa6-4603-b1dd-47cf3c59d10d.png"; }} />
             </div>
+            {/* Лепесток нижний левый */}
+            <div className="absolute w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-white"
+              style={{ bottom: '20px', left: '10%' }}>
+              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/b5abbf02-664c-4904-a795-366abad23a95.png" alt="Занятие 2"
+                className="w-full h-full object-cover object-top" />
+            </div>
+            {/* Лепесток нижний правый */}
+            <div className="absolute w-52 h-52 rounded-full overflow-hidden shadow-xl border-4 border-white"
+              style={{ bottom: '20px', right: '10%' }}>
+              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/7c6c1780-f350-491b-85cc-f59152886e65.png" alt="Занятие 3"
+                className="w-full h-full object-cover object-top" />
+            </div>
+            {/* Центр цветка — логотип */}
+            <div className="absolute w-28 h-28 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-white z-10"
+              style={{ top: '50%', left: '50%', transform: 'translate(-50%, -30%)' }}>
+              <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c4844e39-f0a4-402d-b73b-86467b249168.png"
+                alt="Рыбка Долли" className="w-full h-full object-contain p-1" />
+            </div>
+            {/* Декоративные точки */}
+            <div className="absolute w-5 h-5 rounded-full bg-yellow-400 shadow-md" style={{ top: '28%', left: '20%' }} />
+            <div className="absolute w-3 h-3 rounded-full bg-[#e85d3b] shadow-md" style={{ top: '20%', right: '22%' }} />
+            <div className="absolute w-4 h-4 rounded-full bg-[#2a8c6e] shadow-md" style={{ bottom: '15%', left: '40%' }} />
             <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-lg px-5 py-3">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">🎉</span>
@@ -245,9 +273,9 @@ export default function Index() {
                 </div>
               </div>
             </div>
-            <div className="absolute -top-4 -right-4 bg-yellow-400 rounded-2xl shadow-lg px-5 py-3">
+            <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-2xl shadow-lg px-4 py-2">
               <div className="flex items-center gap-2">
-                <span className="text-2xl">⭐</span>
+                <span className="text-xl">⭐</span>
                 <div>
                   <div className="font-bold text-sm text-gray-800">5.0 рейтинг</div>
                   <div className="text-xs text-gray-700">100+ отзывов</div>
