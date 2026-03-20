@@ -1,5 +1,7 @@
 import Icon from "@/components/ui/icon";
 
+const PROMO_ACTIVE = new Date() < new Date("2026-05-15T23:59:59");
+
 const HERO_IMG = "https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/files/5c28a653-45b9-41fd-9019-5cfd32048f26.jpg";
 const READING_IMG = "https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/files/fa53f2c9-5578-4d90-b8a6-fc3b65124032.jpg";
 const CRAFT_IMG = "https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/files/89e87b38-79de-42c5-b6b9-f63b4dd75b59.jpg";
@@ -129,7 +131,7 @@ export default function ContentSections() {
                       {tag}
                     </span>
                   ))}
-                  {'promo' in s && s.promo && (
+                  {'promo' in s && s.promo && PROMO_ACTIVE && (
                     <span className="px-3 py-1 text-xs font-bold rounded-full bg-[#e85d3b] text-white animate-pulse">
                       {s.promo}
                     </span>
@@ -206,7 +208,7 @@ export default function ContentSections() {
               <div key={item.service} className={`flex items-center justify-between px-6 py-4 hover:bg-[#fff0ed] transition-colors ${i !== prices.length - 1 ? "border-b border-white" : ""}`}>
                 <span className="text-gray-700 font-medium flex items-center gap-3">
                   {item.service}
-                  {item.service === "Летний клуб" && (
+                  {item.service === "Летний клуб" && PROMO_ACTIVE && (
                     <span className="inline-flex items-center gap-1 bg-[#e85d3b] text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
                       🏷️ −12% при покупке до 15 мая
                     </span>
