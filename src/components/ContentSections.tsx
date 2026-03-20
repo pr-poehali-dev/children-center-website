@@ -29,7 +29,7 @@ const prices = [
   { service: "Логопед (индивидуально)", price: "800 ₽/занятие" },
   { service: "Группа продлённого дня", price: "12 500 ₽/мес" },
   { service: "Английский язык", price: "4 500 ₽/мес" },
-  { service: "Летний клуб", price: "от 15 000 ₽/мес" },
+  { service: "Летний клуб", price: "12 500 ₽/мес" },
 ];
 
 const reviews = [
@@ -199,7 +199,14 @@ export default function ContentSections() {
           <div className="bg-[#fdf9f5] rounded-3xl overflow-hidden shadow-sm">
             {prices.map((item, i) => (
               <div key={item.service} className={`flex items-center justify-between px-6 py-4 hover:bg-[#fff0ed] transition-colors ${i !== prices.length - 1 ? "border-b border-white" : ""}`}>
-                <span className="text-gray-700 font-medium">{item.service}</span>
+                <span className="text-gray-700 font-medium flex items-center gap-3">
+                  {item.service}
+                  {item.service === "Летний клуб" && (
+                    <span className="inline-flex items-center gap-1 bg-[#e85d3b] text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
+                      🏷️ −12% при покупке до 15 мая
+                    </span>
+                  )}
+                </span>
                 <span className="font-bold text-[#e85d3b] text-lg whitespace-nowrap ml-4">{item.price}</span>
               </div>
             ))}
