@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
 const PROMO_ACTIVE = new Date() < new Date("2026-05-15T23:59:59");
@@ -51,6 +52,11 @@ const gallery = [
 ];
 
 export default function ContentSections() {
+  const [reviewIndex, setReviewIndex] = useState(0);
+
+  const prevReview = () => setReviewIndex((i) => (i - 1 + reviews.length) % reviews.length);
+  const nextReview = () => setReviewIndex((i) => (i + 1) % reviews.length);
+
   return (
     <>
       {/* О ЦЕНТРЕ */}
@@ -234,26 +240,40 @@ export default function ContentSections() {
             </div>
             <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Что говорят родители</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {reviews.map((r) => (
-              <div key={r.name} className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-all">
-                <div className="flex gap-1 mb-3">
-                  {Array.from({ length: r.stars }).map((_, i) => (
+          <div className="relative max-w-2xl mx-auto">
+            <div className="bg-white rounded-3xl p-8 shadow-sm min-h-[220px] flex flex-col justify-between">
+              <div>
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: reviews[reviewIndex].stars }).map((_, i) => (
                     <span key={i} className="text-yellow-400 text-xl">★</span>
                   ))}
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-4 italic text-[15px]">«{r.text}»</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#fff0ed] rounded-full flex items-center justify-center">
-                    <Icon name="User" size={18} className="text-[#e85d3b]" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-sm text-gray-800">{r.name}</div>
-                    <div className="text-xs text-gray-400">{r.child}</div>
-                  </div>
+                <p className="text-gray-700 leading-relaxed mb-6 italic text-[15px]">«{reviews[reviewIndex].text}»</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-[#fff0ed] rounded-full flex items-center justify-center">
+                  <Icon name="User" size={18} className="text-[#e85d3b]" />
+                </div>
+                <div>
+                  <div className="font-bold text-sm text-gray-800">{reviews[reviewIndex].name}</div>
+                  <div className="text-xs text-gray-400">{reviews[reviewIndex].child}</div>
                 </div>
               </div>
-            ))}
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-6">
+              <button onClick={prevReview} className="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#fff0ed] transition-all">
+                <Icon name="ChevronLeft" size={20} className="text-[#e85d3b]" />
+              </button>
+              <div className="flex gap-2">
+                {reviews.map((_, i) => (
+                  <button key={i} onClick={() => setReviewIndex(i)}
+                    className={`w-2 h-2 rounded-full transition-all ${i === reviewIndex ? "bg-[#e85d3b] w-5" : "bg-gray-300"}`} />
+                ))}
+              </div>
+              <button onClick={nextReview} className="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#fff0ed] transition-all">
+                <Icon name="ChevronRight" size={20} className="text-[#e85d3b]" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
