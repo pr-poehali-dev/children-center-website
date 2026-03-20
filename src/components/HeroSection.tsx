@@ -72,7 +72,7 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
             </button>
             <button onClick={() => scrollTo("услуги")}
               className="px-8 py-4 bg-white text-gray-700 font-bold text-lg rounded-2xl hover:bg-gray-50 transition-all shadow-md">
-              Наши программы →
+              Программы развития →
             </button>
             <a href="https://vk.com/app6379730_-179759189#l=6" target="_blank" rel="noopener noreferrer"
               className="px-8 py-4 bg-[#4f86f7] text-white font-bold text-lg rounded-2xl hover:bg-[#3570e0] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
@@ -84,10 +84,14 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
             </a>
           </div>
           <div className="flex gap-8">
-            {[["200+", "счастливых семей"], ["10+", "опытных педагогов"], ["6", "программ развития"]].map(([num, label]) => (
-              <div key={label}>
-                <div className="font-pacifico text-3xl text-[#2a6e8c]">{num}</div>
-                <div className="text-sm text-gray-500">{label}</div>
+            {[
+              ["🏡", "Множество счастливых семей"],
+              ["👩‍🏫", "Опытные, современные педагоги"],
+              ["📚", "Авторские программы развития"],
+            ].map(([icon, label]) => (
+              <div key={label} className="flex items-center gap-2">
+                <div className="text-2xl">{icon}</div>
+                <div className="text-sm text-gray-600 font-medium max-w-[110px] leading-tight">{label}</div>
               </div>
             ))}
           </div>
