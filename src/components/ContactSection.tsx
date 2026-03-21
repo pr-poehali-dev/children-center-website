@@ -103,7 +103,7 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
               </div>
               {error && <p className="text-center text-sm text-red-500">{error}</p>}
               <button type="submit" disabled={loading}
-                className="w-full py-4 bg-[#e85d3b] text-white font-bold text-lg rounded-2xl hover:bg-[#c94d2e] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed">
+                className="w-full py-4 bg-[#e85d3b] text-white font-bold text-lg rounded-2xl transition-all duration-200 shadow-lg hover:bg-[#c94d2e] hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0">
                 {loading ? "Отправляем..." : "Отправить заявку 🚀"}
               </button>
               <p className="text-center text-xs text-gray-400">
@@ -156,7 +156,7 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
               <h3 className="font-bold text-gray-800 mb-3">Мы в соцсетях</h3>
               <p className="text-gray-600 text-sm mb-3">ribkadolli@mail.ru</p>
               <a href="https://vk.com/rybka_dolli" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2 bg-[#0077FF] text-white text-sm font-semibold rounded-full hover:bg-[#005fcc] transition-all">
+                className="inline-flex items-center gap-2 px-5 py-2 bg-[#0077FF] text-white text-sm font-semibold rounded-full transition-all duration-200 hover:bg-[#005fcc] hover:-translate-y-1 hover:scale-105 hover:shadow-lg active:scale-95">
                 ВКонтакте →
               </a>
             </div>

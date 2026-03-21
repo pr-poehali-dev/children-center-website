@@ -31,7 +31,7 @@ export default function Navbar({ menuOpen, setMenuOpen, scrollTo }: NavbarProps)
           ))}
           <button
             onClick={() => scrollTo("запись")}
-            className="ml-2 px-5 py-2 bg-[#e85d3b] text-white text-sm font-bold rounded-full hover:bg-[#c94d2e] transition-all shadow-sm hover:shadow-md"
+            className="ml-2 px-5 py-2 bg-[#e85d3b] text-white text-sm font-bold rounded-full transition-all duration-200 shadow-sm hover:bg-[#c94d2e] hover:shadow-md hover:-translate-y-0.5 hover:scale-105 active:scale-95"
           >
             Записаться
           </button>
@@ -53,15 +53,15 @@ export default function Navbar({ menuOpen, setMenuOpen, scrollTo }: NavbarProps)
           ))}
           <button
             onClick={() => scrollTo("запись")}
-            className="mt-2 px-5 py-3 bg-[#e85d3b] text-white font-bold rounded-full"
+            className="mt-2 px-5 py-3 bg-[#e85d3b] text-white font-bold rounded-full transition-all duration-200 hover:bg-[#c94d2e] hover:scale-105 active:scale-95"
           >
             Записаться
           </button>
           <div className="mt-2 flex flex-col gap-2">
-            <a href="tel:+79881521698" className="flex items-center justify-center gap-2 px-5 py-3 bg-[#2a8c6e] text-white font-bold rounded-full">
+            <a href="tel:+79881521698" className="flex items-center justify-center gap-2 px-5 py-3 bg-[#2a8c6e] text-white font-bold rounded-full transition-all duration-200 hover:bg-[#1f6b52] hover:scale-105 active:scale-95">
               <Icon name="Phone" size={18} /> +7 988 152-16-98
             </a>
-            <a href="tel:+79787120353" className="flex items-center justify-center gap-2 px-5 py-3 bg-[#2a8c6e] text-white font-bold rounded-full">
+            <a href="tel:+79787120353" className="flex items-center justify-center gap-2 px-5 py-3 bg-[#2a8c6e] text-white font-bold rounded-full transition-all duration-200 hover:bg-[#1f6b52] hover:scale-105 active:scale-95">
               <Icon name="Phone" size={18} /> +7 978 712-03-53
             </a>
           </div>
