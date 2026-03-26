@@ -8,7 +8,7 @@ function BlogBubbleButton() {
       href="https://blogribkadolli.ru/"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed top-4 right-4 z-[100] flex flex-col items-center gap-1 group"
+      className="fixed top-20 right-4 z-[100] flex flex-col items-center gap-1 group"
       style={{ filter: "drop-shadow(0 4px 16px rgba(230,120,0,0.5))" }}
     >
       <div
