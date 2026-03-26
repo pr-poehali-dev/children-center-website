@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS visitors (
+  id SERIAL PRIMARY KEY,
+  visitor_hash TEXT NOT NULL UNIQUE,
+  first_seen TIMESTAMP DEFAULT NOW(),
+  last_seen TIMESTAMP DEFAULT NOW()
+);

@@ -1,0 +1,11 @@
+{
+  "tests": [
+    {
+      "name": "Track visitor and get count",
+      "method": "POST",
+      "path": "/",
+      "expectedStatus": 200,
+      "bodyMatcher": "none"
+    }
+  ]
+}
