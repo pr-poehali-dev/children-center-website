@@ -29,6 +29,14 @@ export default function Navbar({ menuOpen, setMenuOpen, scrollTo }: NavbarProps)
               {link}
             </button>
           ))}
+          <a
+            href="https://blogribkadolli.ru/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-2 px-5 py-2 bg-[#2a8c6e] text-white text-sm font-bold rounded-full transition-all duration-200 shadow-sm hover:bg-[#1f6b52] hover:shadow-md hover:-translate-y-0.5 hover:scale-105 active:scale-95 flex items-center gap-1.5"
+          >
+            <Icon name="BookOpen" size={16} /> Блог
+          </a>
           <button
             onClick={() => scrollTo("запись")}
             className="ml-2 px-5 py-2 bg-[#e85d3b] text-white text-sm font-bold rounded-full transition-all duration-200 shadow-sm hover:bg-[#c94d2e] hover:shadow-md hover:-translate-y-0.5 hover:scale-105 active:scale-95"
@@ -51,9 +59,17 @@ export default function Navbar({ menuOpen, setMenuOpen, scrollTo }: NavbarProps)
               {link}
             </button>
           ))}
+          <a
+            href="https://blogribkadolli.ru/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 flex items-center justify-center gap-2 px-5 py-3 bg-[#2a8c6e] text-white font-bold rounded-full transition-all duration-200 hover:bg-[#1f6b52] hover:scale-105 active:scale-95"
+          >
+            <Icon name="BookOpen" size={18} /> Блог
+          </a>
           <button
             onClick={() => scrollTo("запись")}
-            className="mt-2 px-5 py-3 bg-[#e85d3b] text-white font-bold rounded-full transition-all duration-200 hover:bg-[#c94d2e] hover:scale-105 active:scale-95"
+            className="px-5 py-3 bg-[#e85d3b] text-white font-bold rounded-full transition-all duration-200 hover:bg-[#c94d2e] hover:scale-105 active:scale-95"
           >
             Записаться
           </button>
