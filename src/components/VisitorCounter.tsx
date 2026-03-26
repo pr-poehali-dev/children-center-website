@@ -19,7 +19,7 @@ export default function VisitorCounter() {
 
   return (
     <div className="py-4 text-center border-t border-gray-100">
-      <span className="text-xs text-gray-300">
+      <span className="text-xs text-gray-400">
         Посетителей: {count.toLocaleString("ru-RU")}
       </span>
     </div>
