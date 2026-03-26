@@ -2,6 +2,43 @@ import Icon from "@/components/ui/icon";
 
 const navLinks = ["О центре", "Услуги", "Специалисты", "Галерея", "Прайс", "Отзывы", "Контакты"];
 
+function BlogBubbleButton() {
+  return (
+    <a
+      href="https://blogribkadolli.ru/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed top-4 right-4 z-[100] flex flex-col items-center gap-1 group"
+      style={{ filter: "drop-shadow(0 4px 16px rgba(230,120,0,0.5))" }}
+    >
+      <div
+        className="relative w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110 group-active:scale-95"
+        style={{
+          background: "radial-gradient(circle at 35% 30%, #ffe066 0%, #ffaa00 30%, #e85d3b 65%, #b22000 100%)",
+          boxShadow: "0 4px 0 #7a1000, 0 6px 24px rgba(200,60,0,0.5), inset 0 2px 8px rgba(255,230,100,0.5)",
+          border: "2.5px solid #c47a00",
+        }}
+      >
+        <div
+          className="absolute top-2 left-3 w-7 h-4 rounded-full opacity-60"
+          style={{ background: "radial-gradient(ellipse, rgba(255,255,220,0.95) 0%, rgba(255,220,80,0.0) 100%)" }}
+        />
+        <div
+          className="absolute bottom-2 right-3 w-4 h-2.5 rounded-full opacity-25"
+          style={{ background: "radial-gradient(ellipse, rgba(255,255,255,0.8) 0%, transparent 100%)" }}
+        />
+        <Icon name="BookOpen" size={26} className="text-white drop-shadow-md relative z-10" />
+      </div>
+      <span
+        className="text-xs font-bold tracking-wide px-2 py-0.5 rounded-full"
+        style={{ color: "#b22000", textShadow: "0 1px 0 rgba(255,220,100,0.5)", background: "rgba(255,255,255,0.85)" }}
+      >
+        БЛОГ
+      </span>
+    </a>
+  );
+}
+
 interface NavbarProps {
   menuOpen: boolean;
   setMenuOpen: (v: boolean) => void;
@@ -10,6 +47,8 @@ interface NavbarProps {
 
 export default function Navbar({ menuOpen, setMenuOpen, scrollTo }: NavbarProps) {
   return (
+    <>
+    <BlogBubbleButton />
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -84,5 +123,6 @@ export default function Navbar({ menuOpen, setMenuOpen, scrollTo }: NavbarProps)
         </div>
       )}
     </nav>
+    </>
   );
 }
