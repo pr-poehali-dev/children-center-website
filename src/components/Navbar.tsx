@@ -12,7 +12,7 @@ function BlogBubbleButton() {
       style={{ filter: "drop-shadow(0 4px 16px rgba(230,120,0,0.5))" }}
     >
       <div
-        className="relative w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110 group-active:scale-95"
+        className="relative w-24 h-24 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110 group-active:scale-95"
         style={{
           background: "radial-gradient(circle at 35% 30%, #ffe066 0%, #ffaa00 30%, #e85d3b 65%, #b22000 100%)",
           boxShadow: "0 4px 0 #7a1000, 0 6px 24px rgba(200,60,0,0.5), inset 0 2px 8px rgba(255,230,100,0.5)",
@@ -27,7 +27,7 @@ function BlogBubbleButton() {
           className="absolute bottom-2 right-3 w-4 h-2.5 rounded-full opacity-25"
           style={{ background: "radial-gradient(ellipse, rgba(255,255,255,0.8) 0%, transparent 100%)" }}
         />
-        <Icon name="BookOpen" size={26} className="text-white drop-shadow-md relative z-10" />
+        <Icon name="BookOpen" size={36} className="text-white drop-shadow-md relative z-10" />
       </div>
       <span
         className="text-xs font-bold tracking-wide px-2 py-0.5 rounded-full"
