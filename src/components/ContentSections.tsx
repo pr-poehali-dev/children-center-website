@@ -69,12 +69,12 @@ export default function ContentSections() {
   return (
     <>
       {/* О ЦЕНТРЕ */}
-      <section id="о центре" className="py-20 bg-white">
+      <section id="о центре" aria-labelledby="about-heading" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
-                <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/f9682350-a1f1-4927-bfec-64a418f4fe76.png" alt="Занятие в центре" className="w-full h-80 object-cover" />
+                <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/f9682350-a1f1-4927-bfec-64a418f4fe76.png" alt="Групповое занятие в детском развивающем центре «Рыбка Долли», Керчь" className="w-full h-80 object-cover" width="640" height="320" loading="lazy" />
               </div>
               <div className="mt-4 grid grid-cols-3 gap-4">
                 {[
@@ -94,7 +94,7 @@ export default function ContentSections() {
               <div className="inline-flex items-center gap-2 bg-[#fff0ed] px-4 py-2 rounded-full text-sm text-[#e85d3b] font-semibold mb-4">
                 <span>💛</span> О нас
               </div>
-              <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-6 leading-snug">
+              <h2 id="about-heading" className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-6 leading-snug">
                 Место, где дети любят учиться
               </h2>
               <p className="text-gray-600 leading-relaxed mb-5">
@@ -124,23 +124,24 @@ export default function ContentSections() {
       </section>
 
       {/* УСЛУГИ */}
-      <section id="услуги" className="py-20 bg-[#fdf9f5]">
+      <section id="услуги" aria-labelledby="services-heading" className="py-20 bg-[#fdf9f5]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm text-[#e85d3b] font-semibold mb-4 shadow-sm">
-              <span>🎓</span> Программы центра
+              <span aria-hidden="true">🎓</span> Программы центра
             </div>
-            <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Наши услуги</h2>
+            <h2 id="services-heading" className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Наши услуги</h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" role="list" aria-label="Услуги детского центра «Рыбка Долли»">
             {services.map((s) => (
-              <div key={s.title} className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-default">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-4" style={{ background: s.bg }}>
+              <article key={s.title} role="listitem" className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-default"
+                itemScope itemType="https://schema.org/Service">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl mb-4" style={{ background: s.bg }} aria-hidden="true">
                   {s.emoji}
                 </div>
-                <h3 className="font-bold text-lg text-gray-800 mb-1">{s.title}</h3>
+                <h3 className="font-bold text-lg text-gray-800 mb-1" itemProp="name">{s.title}</h3>
                 <p className="text-sm font-semibold mb-3" style={{ color: s.color }}>{s.subtitle}</p>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4">{s.desc}</p>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4" itemProp="description">{s.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {s.tags.map((tag) => (
                     <span key={tag} className="px-3 py-1 text-xs font-semibold rounded-full" style={{ background: s.bg, color: s.color }}>
@@ -153,56 +154,63 @@ export default function ContentSections() {
                     </span>
                   )}
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       {/* СПЕЦИАЛИСТЫ */}
-      <section id="специалисты" className="py-20 bg-white">
+      <section id="специалисты" aria-labelledby="specialists-heading" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-[#e8f8f3] px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold mb-4">
-              <span>👥</span> Наша команда
+              <span aria-hidden="true">👥</span> Наша команда
             </div>
-            <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Наши специалисты</h2>
+            <h2 id="specialists-heading" className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Наши специалисты</h2>
             <p className="text-gray-500 max-w-lg mx-auto">Опытные педагоги, которые любят свою работу</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {specialists.map((s) => (
-              <div key={s.name} className="rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <article key={s.name} className="rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                itemScope itemType="https://schema.org/Person">
                 <div className="h-44 sm:h-56 md:h-64 flex items-center justify-center overflow-hidden" style={{ background: s.color }}>
                   {s.photo
-                    ? <img src={s.photo} alt={s.name} className="w-full h-full object-cover object-[center_20%]" />
-                    : <span className="text-7xl">{s.emoji}</span>
+                    ? <img src={s.photo} alt={`${s.name} — ${s.role}, детский центр «Рыбка Долли»`} className="w-full h-full object-cover object-[center_20%]" loading="lazy" itemProp="image" />
+                    : <span className="text-7xl" aria-hidden="true">{s.emoji}</span>
                   }
                 </div>
                 <div className="bg-white p-5">
-                  <div className="font-bold text-gray-800 mb-1">{s.name}</div>
-                  <div className="text-sm text-[#e85d3b] font-medium mb-1">{s.role}</div>
+                  <div className="font-bold text-gray-800 mb-1" itemProp="name">{s.name}</div>
+                  <div className="text-sm text-[#e85d3b] font-medium mb-1" itemProp="jobTitle">{s.role}</div>
                   {s.exp && <div className="text-xs text-gray-400">{s.exp}</div>}
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       {/* ГАЛЕРЕЯ */}
-      <section id="галерея" className="py-20 bg-[#fdf9f5]">
+      <section id="галерея" aria-labelledby="gallery-heading" className="py-20 bg-[#fdf9f5]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm text-[#e85d3b] font-semibold mb-4 shadow-sm">
-              <span>📸</span> Фотогалерея
+              <span aria-hidden="true">📸</span> Фотогалерея
             </div>
-            <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Наша жизнь</h2>
+            <h2 id="gallery-heading" className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Наша жизнь</h2>
             <p className="text-gray-500 max-w-lg mx-auto">Взгляните, как проходят дни в нашем центре</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {gallery.map((img, i) => (
-              <div key={i} className={`rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] ${i === 0 ? "md:col-span-2" : ""}`}>
-                <img src={img} alt={`Галерея ${i + 1}`} className="w-full h-36 sm:h-44 md:h-52 object-cover" />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4" role="list" aria-label="Фотографии из жизни детского центра">
+            {[
+              "Дети на занятии в детском развивающем центре «Рыбка Долли»",
+              "Творческая мастерская — рисование и лепка в «Рыбке Долли»",
+              "Игровые занятия для дошкольников в Керчи",
+              "Подготовка к школе: занятия в старшей группе",
+              "Летний клуб «Рыбка Долли» — активный отдых для детей",
+            ].map((altText, i) => (
+              <div key={i} role="listitem" className={`rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] ${i === 0 ? "md:col-span-2" : ""}`}>
+                <img src={gallery[i]} alt={altText} className="w-full h-36 sm:h-44 md:h-52 object-cover" loading="lazy" />
               </div>
             ))}
           </div>
@@ -210,13 +218,13 @@ export default function ContentSections() {
       </section>
 
       {/* ПРАЙС */}
-      <section id="прайс" className="py-20 bg-white">
+      <section id="прайс" aria-labelledby="price-heading" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-[#fffbeb] px-4 py-2 rounded-full text-sm text-[#d4840a] font-semibold mb-4">
-              <span>💰</span> Стоимость
+              <span aria-hidden="true">💰</span> Стоимость
             </div>
-            <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Прайс-лист</h2>
+            <h2 id="price-heading" className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Прайс-лист</h2>
             <p className="text-gray-500 max-w-lg mx-auto">Прозрачные цены без скрытых платежей</p>
           </div>
           <div className="bg-[#fdf9f5] rounded-3xl overflow-hidden shadow-sm">
@@ -241,45 +249,51 @@ export default function ContentSections() {
       </section>
 
       {/* ОТЗЫВЫ */}
-      <section id="отзывы" className="py-20 bg-gradient-to-br from-[#fff0ed] via-yellow-50 to-[#e8f8f3]">
+      <section id="отзывы" aria-labelledby="reviews-heading" className="py-20 bg-gradient-to-br from-[#fff0ed] via-yellow-50 to-[#e8f8f3]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm text-[#e85d3b] font-semibold mb-4 shadow-sm">
-              <span>💬</span> Отзывы
+              <span aria-hidden="true">💬</span> Отзывы
             </div>
-            <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Что говорят родители</h2>
+            <h2 id="reviews-heading" className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Что говорят родители</h2>
           </div>
-          <div className="relative max-w-2xl mx-auto">
-            <div className="bg-white rounded-3xl p-5 sm:p-8 shadow-sm min-h-[220px] flex flex-col justify-between">
+          <div className="relative max-w-2xl mx-auto" role="region" aria-label="Отзывы родителей о детском центре «Рыбка Долли»" aria-live="polite">
+            <article className="bg-white rounded-3xl p-5 sm:p-8 shadow-sm min-h-[220px] flex flex-col justify-between"
+              itemScope itemType="https://schema.org/Review">
+              <meta itemProp="itemReviewed" content="Детский развивающий центр «Рыбка Долли»" />
               <div>
-                <div className="flex gap-1 mb-4">
+                <div className="flex gap-1 mb-4" role="img" aria-label={`Оценка: ${reviews[reviewIndex].stars} из 5`}
+                  itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+                  <meta itemProp="ratingValue" content={String(reviews[reviewIndex].stars)} />
+                  <meta itemProp="bestRating" content="5" />
                   {Array.from({ length: reviews[reviewIndex].stars }).map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-xl">★</span>
+                    <span key={i} className="text-yellow-400 text-xl" aria-hidden="true">★</span>
                   ))}
                 </div>
-                <p className="text-gray-700 leading-relaxed mb-6 italic text-[15px]">«{reviews[reviewIndex].text}»</p>
+                <p className="text-gray-700 leading-relaxed mb-6 italic text-[15px]" itemProp="reviewBody">«{reviews[reviewIndex].text}»</p>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#fff0ed] rounded-full flex items-center justify-center">
+              <div className="flex items-center gap-3" itemProp="author" itemScope itemType="https://schema.org/Person">
+                <div className="w-10 h-10 bg-[#fff0ed] rounded-full flex items-center justify-center" aria-hidden="true">
                   <Icon name="User" size={18} className="text-[#e85d3b]" />
                 </div>
                 <div>
-                  <div className="font-bold text-sm text-gray-800">{reviews[reviewIndex].name}</div>
+                  <div className="font-bold text-sm text-gray-800" itemProp="name">{reviews[reviewIndex].name}</div>
                   <div className="text-xs text-gray-400">{reviews[reviewIndex].child}</div>
                 </div>
               </div>
-            </div>
+            </article>
             <div className="flex items-center justify-center gap-4 mt-6">
-              <button onClick={prevReview} className="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#fff0ed] transition-all">
+              <button onClick={prevReview} aria-label="Предыдущий отзыв" className="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#fff0ed] transition-all">
                 <Icon name="ChevronLeft" size={20} className="text-[#e85d3b]" />
               </button>
-              <div className="flex gap-2">
-                {reviews.map((_, i) => (
-                  <button key={i} onClick={() => { setPaused(true); setReviewIndex(i); }}
+              <div className="flex gap-2" role="tablist" aria-label="Переключатель отзывов">
+                {reviews.map((r, i) => (
+                  <button key={i} role="tab" aria-selected={i === reviewIndex} aria-label={`Отзыв от ${r.name}`}
+                    onClick={() => { setPaused(true); setReviewIndex(i); }}
                     className={`w-2 h-2 rounded-full transition-all ${i === reviewIndex ? "bg-[#e85d3b] w-5" : "bg-gray-300"}`} />
                 ))}
               </div>
-              <button onClick={nextReview} className="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#fff0ed] transition-all">
+              <button onClick={nextReview} aria-label="Следующий отзыв" className="w-10 h-10 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#fff0ed] transition-all">
                 <Icon name="ChevronRight" size={20} className="text-[#e85d3b]" />
               </button>
             </div>

@@ -34,8 +34,17 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
   }, []);
 
   return (
-    <section className="pt-20 min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50">
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <section
+      id="главная"
+      aria-label="Детский развивающий центр «Рыбка Долли» в Керчи"
+      className="pt-20 min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-yellow-50 via-orange-50 to-pink-50"
+      itemScope itemType="https://schema.org/ChildCare"
+    >
+      <meta itemProp="name" content="Рыбка Долли" />
+      <meta itemProp="telephone" content="+79881521698" />
+      <meta itemProp="address" content="г. Керчь, ул. Циолковского, 12" />
+
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         {[
           "w-64 h-64 bg-yellow-200/40 -top-12 -left-12",
           "w-96 h-96 bg-coral-200/30 -bottom-24 -right-24",
@@ -52,21 +61,24 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
         <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
 
           {/* ЦВЕТОК */}
-          <div className="relative flex-shrink-0 w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px]">
+          <div className="relative flex-shrink-0 w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px]" aria-hidden="true">
             <div className="absolute rounded-full overflow-hidden border-[5px] border-white shadow-2xl"
               style={{ width: '55%', height: '55%', top: 0, left: '50%', transform: 'translateX(-50%)' }}>
               <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/c9c6c2de-6fa6-4603-b1dd-47cf3c59d10d.png"
-                alt="Занятие 1" className="w-full h-full object-cover object-center" />
+                alt="Дети на творческом занятии в центре «Рыбка Долли»" className="w-full h-full object-cover object-center"
+                width="209" height="209" loading="eager" />
             </div>
             <div className="absolute rounded-full overflow-hidden border-[5px] border-white shadow-2xl"
               style={{ width: '55%', height: '55%', bottom: 0, left: 0 }}>
               <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/d707734d-8b6d-4ee2-9d51-0e454f84f5e0.png"
-                alt="Занятие 2" className="w-full h-full object-cover object-center" />
+                alt="Занятие с педагогом в детском развивающем центре Керчь" className="w-full h-full object-cover object-center"
+                width="209" height="209" loading="eager" />
             </div>
             <div className="absolute rounded-full overflow-hidden border-[5px] border-white shadow-2xl"
               style={{ width: '55%', height: '55%', bottom: 0, right: 0 }}>
               <img src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/7c6c1780-f350-491b-85cc-f59152886e65.png"
-                alt="Занятие 3" className="w-full h-full object-cover object-center" />
+                alt="Игровое обучение в «Рыбке Долли», Керчь" className="w-full h-full object-cover object-center"
+                width="209" height="209" loading="eager" />
             </div>
           </div>
 
@@ -76,9 +88,12 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
               className="inline-flex items-center gap-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold shadow-sm mb-4 transition-all duration-500"
               style={{ opacity: badgeVisible ? 1 : 0, transform: badgeVisible ? 'translateY(0)' : 'translateY(-12px)' }}
             >
-              <span>🌈</span> Комфортное пространство для детей
+              <span aria-hidden="true">🌈</span> Комфортное пространство для детей
             </div>
-            <h1 className="font-pacifico text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#2a6e8c] leading-none mb-3 min-h-[1em]">
+            <h1
+              className="font-pacifico text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#2a6e8c] leading-none mb-3 min-h-[1em]"
+              itemProp="name"
+            >
               {TITLE.split("").map((char, i) => (
                 <span
                   key={i}
@@ -107,41 +122,44 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
           className="max-w-3xl transition-all duration-700"
           style={{ opacity: contentVisible ? 1 : 0, transform: contentVisible ? 'translateY(0)' : 'translateY(24px)' }}
         >
-          <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6">
-            Детский развивающий центр, где каждый ребёнок чувствует себя особенным. Мягкая адаптация, творческое развитие и качественная подготовка к школе.
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6" itemProp="description">
+            Детский развивающий центр в Керчи, где каждый ребёнок чувствует себя особенным. Мягкая адаптация, творческое развитие и качественная подготовка к школе для детей от 1,5 до 7 лет.
           </p>
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-6" role="list" aria-label="Направления работы центра">
             {["🎨 Творчество", "📖 Подготовка к школе", "🤗 Лёгкая адаптация", "🌟 Комплексное развитие"].map((tag) => (
-              <span key={tag} className="px-3 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm">
+              <span key={tag} role="listitem" className="px-3 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm">
                 {tag}
               </span>
             ))}
           </div>
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-8">
-            <a href="https://vk.com/app6379730_-179759189#l=6" target="_blank"
+            <a href="https://vk.com/app6379730_-179759189#l=6" target="_blank" rel="noopener noreferrer"
+              aria-label="Подробнее о детском саде «Рыбка Долли» во ВКонтакте"
               className="px-6 py-3 bg-[#4f86f7] text-white font-bold text-base rounded-2xl shadow-lg text-center
                 transition-all duration-200 hover:bg-[#3570e0] hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95">
               🏠 Подробнее о садике →
             </a>
             <button onClick={() => scrollTo("запись")}
+              aria-label="Записаться на экскурсию в детский центр «Рыбка Долли»"
               className="px-6 py-3 bg-[#e85d3b] text-white font-bold text-base rounded-2xl shadow-lg
                 transition-all duration-200 hover:bg-[#c94d2e] hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95">
               Записаться на экскурсию
             </button>
             <a href="https://vk.com/app6379730_-179759189#l=8" target="_blank" rel="noopener noreferrer"
+              aria-label="Смены летнего клуба «Рыбка Долли» — купить путёвку"
               className="px-6 py-3 bg-[#f7c948] text-gray-800 font-bold text-base rounded-2xl shadow-lg text-center
                 transition-all duration-200 hover:bg-[#e6b830] hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95">
               ☀️ Смены летнего клуба →
             </a>
           </div>
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap gap-6" role="list" aria-label="Преимущества центра">
             {[
               ["🏡", "Множество счастливых семей"],
               ["👩‍🏫", "Опытные, современные педагоги"],
               ["📚", "Авторские программы развития"],
             ].map(([icon, label]) => (
-              <div key={label} className="flex items-center gap-2">
-                <div className="text-2xl">{icon}</div>
+              <div key={label} role="listitem" className="flex items-center gap-2">
+                <div className="text-2xl" aria-hidden="true">{icon}</div>
                 <div className="text-sm text-gray-600 font-medium max-w-[120px] leading-tight">{label}</div>
               </div>
             ))}

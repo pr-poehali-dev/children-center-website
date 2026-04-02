@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://poehali.dev/</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/f9682350-a1f1-4927-bfec-64a418f4fe76.png</image:loc>
+      <image:title>Детский развивающий центр «Рыбка Долли» в Керчи</image:title>
+      <image:caption>Занятие в детском центре «Рыбка Долли», Керчь, ул. Циолковского 12</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.poehali.dev/files/b7e139c8-93e0-4bbb-b9d3-83e343cd59db.png</image:loc>
+      <image:title>Дети на занятии в «Рыбке Долли»</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.poehali.dev/files/bb83b1db-3a9f-4e90-ab10-e6980a71620a.png</image:loc>
+      <image:title>Развивающие занятия для детей в Керчи</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.poehali.dev/files/3e522020-93c1-4155-ac37-1067785b8111.png</image:loc>
+      <image:title>Творческая мастерская в детском центре «Рыбка Долли»</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.poehali.dev/files/4b6ccfe2-5c36-4d8f-86a3-2d2d0ba4a2df.png</image:loc>
+      <image:title>Летний клуб «Рыбка Долли» — дети на прогулке</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.poehali.dev/files/3611f407-5c5c-4b26-89e4-891e2f8aaff8.png</image:loc>
+      <image:title>Подготовка к школе в «Рыбке Долли», Керчь</image:title>
+    </image:image>
+  </url>
+</urlset>
