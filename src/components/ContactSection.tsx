@@ -16,7 +16,7 @@ interface ContactSectionProps {
 }
 
 export default function ContactSection({ scrollTo }: ContactSectionProps) {
-  const [formData, setFormData] = useState({ name: "", phone: "", service: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", phone: "", messenger: "telegram", service: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -78,6 +78,22 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
                     placeholder="+7 (___) ___-__-__"
                     className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
                   />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Мессенджер для ответа *</label>
+                <p className="text-xs text-gray-400 mb-2">Укажите номер, привязанный к мессенджеру</p>
+                <div className="flex gap-3 mb-3">
+                  <button type="button"
+                    onClick={() => setFormData({ ...formData, messenger: "telegram" })}
+                    className={`flex-1 py-2.5 px-4 rounded-xl border-2 font-semibold text-sm transition-all ${formData.messenger === "telegram" ? "border-[#2AABEE] bg-[#e8f6fd] text-[#2AABEE]" : "border-gray-200 bg-white text-gray-500"}`}>
+                    ✈️ Telegram
+                  </button>
+                  <button type="button"
+                    onClick={() => setFormData({ ...formData, messenger: "whatsapp" })}
+                    className={`flex-1 py-2.5 px-4 rounded-xl border-2 font-semibold text-sm transition-all ${formData.messenger === "whatsapp" ? "border-[#25D366] bg-[#e8faf0] text-[#25D366]" : "border-gray-200 bg-white text-gray-500"}`}>
+                    💬 WhatsApp
+                  </button>
                 </div>
               </div>
               <div>

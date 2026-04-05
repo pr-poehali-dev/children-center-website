@@ -3,10 +3,11 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import psycopg2
 
 
 def handler(event: dict, context) -> dict:
-    """Отправляет заявку с сайта на почту ribkadolli@mail.ru"""
+    """Отправляет заявку с сайта на почту и сохраняет в БД"""
 
     if event.get('httpMethod') == 'OPTIONS':
         return {
@@ -23,8 +24,22 @@ def handler(event: dict, context) -> dict:
     body = json.loads(event.get('body') or '{}')
     name = body.get('name', '')
     phone = body.get('phone', '')
+    messenger = body.get('messenger', 'telegram')
     service = body.get('service', '')
     message = body.get('message', '')
+
+    conn = psycopg2.connect(os.environ['DATABASE_URL'])
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO t_p29674401_children_center_webs.applications (name, phone, messenger, service, message) VALUES (%s, %s, %s, %s, %s)",
+        (name, phone, messenger, service, message)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    messenger_labels = {'telegram': 'Telegram', 'whatsapp': 'WhatsApp'}
+    messenger_label = messenger_labels.get(messenger, messenger)
 
     smtp_password = os.environ['SMTP_PASSWORD']
     from_email = 'ribkadolli@mail.ru'
@@ -40,6 +55,7 @@ def handler(event: dict, context) -> dict:
     <table style="border-collapse:collapse;width:100%;max-width:500px">
       <tr><td style="padding:8px;font-weight:bold;background:#fff0ed">Имя</td><td style="padding:8px">{name}</td></tr>
       <tr><td style="padding:8px;font-weight:bold;background:#fff0ed">Телефон</td><td style="padding:8px">{phone}</td></tr>
+      <tr><td style="padding:8px;font-weight:bold;background:#fff0ed">Мессенджер</td><td style="padding:8px">{messenger_label}</td></tr>
       <tr><td style="padding:8px;font-weight:bold;background:#fff0ed">Услуга</td><td style="padding:8px">{service or 'не указана'}</td></tr>
       <tr><td style="padding:8px;font-weight:bold;background:#fff0ed">Сообщение</td><td style="padding:8px">{message or 'не указано'}</td></tr>
     </table>
