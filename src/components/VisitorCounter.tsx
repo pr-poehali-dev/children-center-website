@@ -18,10 +18,13 @@ export default function VisitorCounter() {
   if (count === null) return null;
 
   return (
-    <div className="py-4 text-center border-t border-gray-100">
+    <div className="py-4 text-center border-t border-gray-100 flex items-center justify-center gap-4">
       <span className="text-xs text-gray-400">
         Посетителей: {count.toLocaleString("ru-RU")}
       </span>
+      <a href="/admin" className="text-xs text-gray-300 hover:text-gray-400 transition-colors">
+        Админ
+      </a>
     </div>
   );
 }
