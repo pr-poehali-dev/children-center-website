@@ -4,10 +4,22 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import psycopg2
+import urllib.request
+
+
+def send_telegram(text: str):
+    token = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID', '')
+    if not token or not chat_id:
+        return
+    url = f'https://api.telegram.org/bot{token}/sendMessage'
+    data = json.dumps({'chat_id': chat_id, 'text': text, 'parse_mode': 'HTML'}).encode()
+    req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
+    urllib.request.urlopen(req, timeout=5)
 
 
 def handler(event: dict, context) -> dict:
-    """Отправляет заявку с сайта на почту и сохраняет в БД"""
+    """Отправляет заявку с сайта на почту, в Telegram и сохраняет в БД"""
 
     if event.get('httpMethod') == 'OPTIONS':
         return {
@@ -40,6 +52,17 @@ def handler(event: dict, context) -> dict:
 
     messenger_labels = {'telegram': 'Telegram', 'max': 'Макс'}
     messenger_label = messenger_labels.get(messenger, messenger)
+
+    tg_text = (
+        f"🐟 <b>Новая заявка — Рыбка Долли</b>\n\n"
+        f"👤 <b>Имя:</b> {name}\n"
+        f"📞 <b>Телефон:</b> {phone}\n"
+        f"💬 <b>Мессенджер:</b> {messenger_label}\n"
+        f"📚 <b>Услуга:</b> {service or 'не указана'}\n"
+        f"✉️ <b>Сообщение:</b> {message or 'не указано'}\n\n"
+        f"👉 Ответить: ribkadollli.ru/admin"
+    )
+    send_telegram(tg_text)
 
     smtp_password = os.environ['SMTP_PASSWORD']
     from_email = 'ribkadolli@mail.ru'
