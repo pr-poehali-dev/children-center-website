@@ -90,9 +90,9 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
                     ✈️ Telegram
                   </button>
                   <button type="button"
-                    onClick={() => setFormData({ ...formData, messenger: "whatsapp" })}
-                    className={`flex-1 py-2.5 px-4 rounded-xl border-2 font-semibold text-sm transition-all ${formData.messenger === "whatsapp" ? "border-[#25D366] bg-[#e8faf0] text-[#25D366]" : "border-gray-200 bg-white text-gray-500"}`}>
-                    💬 WhatsApp
+                    onClick={() => setFormData({ ...formData, messenger: "max" })}
+                    className={`flex-1 py-2.5 px-4 rounded-xl border-2 font-semibold text-sm transition-all ${formData.messenger === "max" ? "border-[#6B4FBB] bg-[#f0ecfb] text-[#6B4FBB]" : "border-gray-200 bg-white text-gray-500"}`}>
+                    💜 Макс
                   </button>
                 </div>
               </div>

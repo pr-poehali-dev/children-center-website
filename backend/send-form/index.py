@@ -38,7 +38,7 @@ def handler(event: dict, context) -> dict:
     cur.close()
     conn.close()
 
-    messenger_labels = {'telegram': 'Telegram', 'whatsapp': 'WhatsApp'}
+    messenger_labels = {'telegram': 'Telegram', 'max': 'Макс'}
     messenger_label = messenger_labels.get(messenger, messenger)
 
     smtp_password = os.environ['SMTP_PASSWORD']

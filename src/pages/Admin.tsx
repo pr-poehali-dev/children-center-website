@@ -28,7 +28,7 @@ function getMessengerLink(app: Application) {
   if (app.messenger === "telegram") {
     return { url: `https://t.me/+${digits}`, label: "✈️ Написать в Telegram" };
   }
-  return { url: `https://wa.me/${digits}`, label: "💬 Написать в WhatsApp" };
+  return { url: `https://max.ru/+${digits}`, label: "💜 Написать в Макс" };
 }
 
 function formatDate(iso: string) {
@@ -188,7 +188,7 @@ export default function Admin() {
                 <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
                   <div>
                     <h3 className="font-bold text-gray-800 text-lg">{app.name}</h3>
-                    <p className="text-gray-500 text-sm">{app.phone} · {app.messenger === "telegram" ? "✈️ Telegram" : "💬 WhatsApp"}</p>
+                    <p className="text-gray-500 text-sm">{app.phone} · {app.messenger === "telegram" ? "✈️ Telegram" : "💜 Макс"}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${s.color}`}>{s.label}</span>
