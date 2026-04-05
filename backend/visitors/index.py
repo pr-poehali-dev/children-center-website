@@ -18,8 +18,14 @@ def handler(event: dict, context) -> dict:
             'body': ''
         }
 
-    ip = event.get('requestContext', {}).get('identity', {}).get('sourceIp', 'unknown')
-    user_agent = event.get('headers', {}).get('user-agent', '')
+    headers = event.get('headers') or {}
+    ip = (
+        headers.get('x-forwarded-for') or
+        headers.get('X-Forwarded-For') or
+        event.get('requestContext', {}).get('identity', {}).get('sourceIp') or
+        'unknown'
+    ).split(',')[0].strip()
+    user_agent = headers.get('user-agent') or headers.get('User-Agent') or ''
     visitor_hash = hashlib.sha256(f"{ip}:{user_agent}".encode()).hexdigest()
 
     schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
