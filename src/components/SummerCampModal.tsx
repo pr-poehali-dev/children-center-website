@@ -133,6 +133,10 @@ const SHIFTS = [
 export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampModalProps) {
   const [activeShift, setActiveShift] = useState<number | null>(null);
   const [spots, setSpots] = useState<ShiftSpots[]>([]);
+  const [bookingShift, setBookingShift] = useState<number | null>(null);
+  const [bookForm, setBookForm] = useState({ name: "", phone: "" });
+  const [bookLoading, setBookLoading] = useState(false);
+  const [bookDone, setBookDone] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -141,6 +145,31 @@ export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampM
       .then(data => setSpots(data))
       .catch(() => {});
   }, [open]);
+
+  const handleBook = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (bookingShift === null) return;
+    setBookLoading(true);
+    try {
+      await fetch(FUNC2URL["send-form"], {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: bookForm.name,
+          phone: bookForm.phone,
+          messenger: "telegram",
+          service: `Летний клуб — смена ${bookingShift + 1}: ${SHIFTS[bookingShift].theme}`,
+          shift_id: bookingShift + 1,
+        }),
+      });
+      setBookDone(true);
+      setSpots(prev => prev.map(s =>
+        s.id === bookingShift + 1 ? { ...s, spots_left: Math.max(0, s.spots_left - 1) } : s
+      ));
+    } finally {
+      setBookLoading(false);
+    }
+  };
 
   const getSpots = (idx: number): ShiftSpots | undefined =>
     spots.find(s => s.id === idx + 1);
@@ -289,12 +318,47 @@ export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampM
                     <p className="text-sm text-gray-700">{SHIFTS[activeShift].bonus}</p>
                   </div>
                 </div>
-                <button
-                  onClick={() => { onClose(); scrollTo("запись"); }}
-                  className="w-full py-3 bg-[#c45e10] text-white font-bold text-sm rounded-xl hover:bg-[#a34d0c] transition-all"
-                >
-                  Забронировать место →
-                </button>
+                {bookingShift === activeShift ? (
+                  bookDone ? (
+                    <div className="bg-green-50 rounded-xl p-4 text-center">
+                      <div className="text-2xl mb-1">🎉</div>
+                      <p className="font-bold text-green-700 text-sm">Заявка принята!</p>
+                      <p className="text-xs text-gray-500 mt-1">Мы свяжемся с вами в ближайшее время</p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleBook} className="space-y-2">
+                      <input
+                        type="text" required placeholder="Ваше имя"
+                        value={bookForm.name}
+                        onChange={e => setBookForm(p => ({ ...p, name: e.target.value }))}
+                        className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c45e10]/30 focus:border-[#c45e10]"
+                      />
+                      <input
+                        type="tel" required placeholder="+7 (___) ___-__-__"
+                        value={bookForm.phone}
+                        onChange={e => setBookForm(p => ({ ...p, phone: e.target.value }))}
+                        className="w-full px-3 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c45e10]/30 focus:border-[#c45e10]"
+                      />
+                      <div className="flex gap-2">
+                        <button type="button" onClick={() => setBookingShift(null)}
+                          className="px-3 py-2.5 text-sm text-gray-400 border border-gray-200 rounded-xl hover:bg-gray-50">
+                          Отмена
+                        </button>
+                        <button type="submit" disabled={bookLoading}
+                          className="flex-1 py-2.5 bg-[#c45e10] text-white font-bold text-sm rounded-xl hover:bg-[#a34d0c] transition-all disabled:opacity-50">
+                          {bookLoading ? "Отправляем..." : "Отправить заявку →"}
+                        </button>
+                      </div>
+                    </form>
+                  )
+                ) : (
+                  <button
+                    onClick={() => { setBookingShift(activeShift); setBookDone(false); setBookForm({ name: "", phone: "" }); }}
+                    className="w-full py-3 bg-[#c45e10] text-white font-bold text-sm rounded-xl hover:bg-[#a34d0c] transition-all"
+                  >
+                    Забронировать место →
+                  </button>
+                )}
               </div>
             </div>
           )}
@@ -318,8 +382,8 @@ export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampM
           {/* Цена */}
           <div className="bg-[#fff3e8] rounded-2xl p-5 flex items-center justify-between mb-6">
             <div>
-              <div className="text-sm text-gray-500">Стоимость</div>
-              <div className="font-pacifico text-2xl text-[#c45e10]">12 500 ₽/мес</div>
+              <div className="text-sm text-gray-500">Стоимость смены</div>
+              <div className="font-pacifico text-2xl text-[#c45e10]">12 500 ₽</div>
             </div>
             <div className="text-sm text-gray-500 text-right max-w-[180px]">
               2-х разовое горячее питание:<br />обед и полдник

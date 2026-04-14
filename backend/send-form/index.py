@@ -42,6 +42,7 @@ def handler(event: dict, context) -> dict:
     messenger = body.get('messenger', 'telegram')
     service = body.get('service', '')
     message = body.get('message', '')
+    shift_id = body.get('shift_id')
 
     conn = psycopg2.connect(os.environ['DATABASE_URL'])
     cur = conn.cursor()
@@ -49,6 +50,11 @@ def handler(event: dict, context) -> dict:
         "INSERT INTO t_p29674401_children_center_webs.applications (name, phone, messenger, service, message) VALUES (%s, %s, %s, %s, %s)",
         (name, phone, messenger, service, message)
     )
+    if shift_id:
+        cur.execute(
+            "UPDATE t_p29674401_children_center_webs.summer_shifts SET spots_left = GREATEST(0, spots_left - 1), updated_at = NOW() WHERE id = %s",
+            (int(shift_id),)
+        )
     conn.commit()
     cur.close()
     conn.close()
