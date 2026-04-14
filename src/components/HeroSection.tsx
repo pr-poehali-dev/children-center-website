@@ -108,10 +108,12 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
               ))}
             </h1>
             <p
-              className="font-pacifico text-xl sm:text-2xl md:text-3xl text-[#f7a825] transition-all duration-500"
+              className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed transition-all duration-500 max-w-lg"
               style={{ opacity: subtitleVisible ? 1 : 0, transform: subtitleVisible ? 'translateY(0)' : 'translateY(10px)' }}
             >
-              Дети наше всё!
+              Мягкая и быстрая адаптация — без слёз и стресса.<br />
+              Детский центр в Керчи, где ребёнок полюбит учиться,<br className="hidden sm:block" />
+              а вы перестанете переживать.
             </p>
           </div>
 
@@ -140,10 +142,10 @@ export default function HeroSection({ scrollTo }: HeroSectionProps) {
               🏠 Подробнее о садике →
             </a>
             <button onClick={() => scrollTo("запись")}
-              aria-label="Записаться на экскурсию в детский центр «Рыбка Долли»"
+              aria-label="Получить консультацию и чек-лист в подарок"
               className="px-6 py-3 bg-[#e85d3b] text-white font-bold text-base rounded-2xl shadow-lg
-                transition-all duration-200 hover:bg-[#c94d2e] hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95">
-              Записаться на экскурсию
+                transition-all duration-200 hover:bg-[#c94d2e] hover:shadow-xl hover:-translate-y-1 hover:scale-105 active:scale-95 flex items-center gap-2">
+              <span>🎁</span> Получить консультацию + чек-лист в подарок
             </button>
             <a href="https://vk.com/app6379730_-179759189#l=8" target="_blank" rel="noopener noreferrer"
               aria-label="Смены летнего клуба «Рыбка Долли» — купить путёвку"

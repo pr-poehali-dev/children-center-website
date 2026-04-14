@@ -16,7 +16,7 @@ interface ContactSectionProps {
 }
 
 export default function ContactSection({ scrollTo }: ContactSectionProps) {
-  const [formData, setFormData] = useState({ name: "", phone: "", messenger: "telegram", service: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", phone: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -47,10 +47,12 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 bg-[#fff0ed] px-4 py-2 rounded-full text-sm text-[#e85d3b] font-semibold mb-4">
-              <span aria-hidden="true">✍️</span> Запись
+              <span aria-hidden="true">🎁</span> Консультация + чек-лист в подарок
             </div>
-            <h2 id="booking-heading" className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Записаться в центр</h2>
-            <p className="text-gray-500">Оставьте заявку и мы свяжемся с вами в течение часа</p>
+            <h2 id="booking-heading" className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">
+              Хотите, чтобы ребёнок рос счастливым — а вы могли выдохнуть?
+            </h2>
+            <p className="text-gray-500 max-w-md mx-auto">В «Рыбке Долли» мы создали пространство, где дети развиваются с удовольствием, а мамы получают время для себя.</p>
           </div>
           {submitted ? (
             <div className="bg-[#e8f8f3] rounded-3xl p-10 text-center">
@@ -60,67 +62,28 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="bg-[#fdf9f5] rounded-3xl p-8 shadow-sm space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Ваше имя *</label>
-                  <input
-                    type="text" required value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Анна Петрова"
-                    className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Телефон *</label>
-                  <input
-                    type="tel" required value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+7 (___) ___-__-__"
-                    className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
-                  />
-                </div>
-              </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Мессенджер для ответа *</label>
-                <p className="text-xs text-gray-400 mb-2">Укажите номер, привязанный к мессенджеру</p>
-                <div className="flex gap-3 mb-3">
-                  <button type="button"
-                    onClick={() => setFormData({ ...formData, messenger: "telegram" })}
-                    className={`flex-1 py-2.5 px-4 rounded-xl border-2 font-semibold text-sm transition-all ${formData.messenger === "telegram" ? "border-[#2AABEE] bg-[#e8f6fd] text-[#2AABEE]" : "border-gray-200 bg-white text-gray-500"}`}>
-                    ✈️ Telegram
-                  </button>
-                  <button type="button"
-                    onClick={() => setFormData({ ...formData, messenger: "max" })}
-                    className={`flex-1 py-2.5 px-4 rounded-xl border-2 font-semibold text-sm transition-all ${formData.messenger === "max" ? "border-[#6B4FBB] bg-[#f0ecfb] text-[#6B4FBB]" : "border-gray-200 bg-white text-gray-500"}`}>
-                    💜 Макс
-                  </button>
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Интересующая программа</label>
-                <select
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Ваше имя *</label>
+                <input
+                  type="text" required value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Анна Петрова"
                   className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
-                >
-                  <option value="">Выберите программу</option>
-                  {services.map((s) => <option key={s.title} value={s.title}>{s.title}</option>)}
-                </select>
+                />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Сообщение</label>
-                <textarea
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Возраст ребёнка, вопросы..."
-                  rows={3}
-                  className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all resize-none"
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Телефон *</label>
+                <input
+                  type="tel" required value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="+7 (___) ___-__-__"
+                  className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
                 />
               </div>
               {error && <p className="text-center text-sm text-red-500">{error}</p>}
               <button type="submit" disabled={loading}
                 className="w-full py-4 bg-[#e85d3b] text-white font-bold text-lg rounded-2xl transition-all duration-200 shadow-lg hover:bg-[#c94d2e] hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0">
-                {loading ? "Отправляем..." : "Отправить заявку 🚀"}
+                {loading ? "Отправляем..." : "🎁 Получить консультацию"}
               </button>
               <p className="text-center text-xs text-gray-400">
                 Нажимая кнопку, вы соглашаетесь на обработку персональных данных

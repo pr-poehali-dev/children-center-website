@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import ContentSections from "@/components/ContentSections";
 import ContactSection from "@/components/ContactSection";
 import VisitorCounter from "@/components/VisitorCounter";
+import GroupSpotsWidget from "@/components/GroupSpotsWidget";
 
 export default function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,6 +19,7 @@ export default function Index() {
       <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} scrollTo={scrollTo} />
       <HeroSection scrollTo={scrollTo} />
       <ContentSections />
+      <GroupSpotsWidget scrollTo={scrollTo} />
       <ContactSection scrollTo={scrollTo} />
       <VisitorCounter />
     </div>

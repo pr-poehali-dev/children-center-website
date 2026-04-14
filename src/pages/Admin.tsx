@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 
 const API_URL = "https://functions.poehali.dev/4d84314d-8994-40f2-80ad-a3feebbc162c";
+const SPOTS_API = "https://functions.poehali.dev/caca698d-af1f-4f52-aed6-1c3f2dd75e01";
 
 interface Application {
   id: number;
@@ -11,6 +12,12 @@ interface Application {
   message: string;
   status: "new" | "in_progress" | "done";
   created_at: string;
+}
+
+interface Group {
+  id: number;
+  group_name: string;
+  spots_left: number;
 }
 
 const STATUS_LABELS: Record<string, { label: string; color: string }> = {
@@ -44,6 +51,9 @@ export default function Admin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("all");
+  const [groups, setGroups] = useState<Group[]>([]);
+  const [spotsEditing, setSpotsEditing] = useState<Record<number, string>>({});
+  const [spotsSaving, setSpotsSaving] = useState<Record<number, boolean>>({});
 
   const fetchApps = useCallback(async (pwd: string) => {
     setLoading(true);
@@ -71,6 +81,26 @@ export default function Admin() {
   useEffect(() => {
     if (password) fetchApps(password);
   }, [password, fetchApps]);
+
+  useEffect(() => {
+    if (authed) {
+      fetch(SPOTS_API).then((r) => r.json()).then(setGroups).catch(() => {});
+    }
+  }, [authed]);
+
+  const saveSpots = async (g: Group) => {
+    const val = parseInt(spotsEditing[g.id] ?? String(g.spots_left));
+    if (isNaN(val) || val < 0) return;
+    setSpotsSaving((p) => ({ ...p, [g.id]: true }));
+    await fetch(SPOTS_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: g.id, spots_left: val }),
+    });
+    setGroups((prev) => prev.map((gr) => gr.id === g.id ? { ...gr, spots_left: val } : gr));
+    setSpotsEditing((p) => { const n = { ...p }; delete n[g.id]; return n; });
+    setSpotsSaving((p) => ({ ...p, [g.id]: false }));
+  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -153,6 +183,41 @@ export default function Admin() {
       </header>
 
       <div className="max-w-5xl mx-auto px-4 py-6">
+
+        {/* УПРАВЛЕНИЕ МЕСТАМИ */}
+        {groups.length > 0 && (
+          <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+            <h2 className="font-bold text-gray-800 text-base mb-4">⏳ Свободные места на сентябрь</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {groups.map((g) => (
+                <div key={g.id} className="bg-[#fdf9f5] rounded-xl p-4">
+                  <div className="text-sm font-semibold text-gray-700 mb-2">{g.group_name}</div>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      min={0}
+                      max={99}
+                      value={spotsEditing[g.id] ?? g.spots_left}
+                      onChange={(e) => setSpotsEditing((p) => ({ ...p, [g.id]: e.target.value }))}
+                      className="w-20 px-3 py-2 text-lg font-bold text-center border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b]"
+                    />
+                    <span className="text-sm text-gray-400">мест</span>
+                    {spotsEditing[g.id] !== undefined && (
+                      <button
+                        onClick={() => saveSpots(g)}
+                        disabled={spotsSaving[g.id]}
+                        className="ml-auto px-3 py-2 bg-[#e85d3b] text-white text-sm font-semibold rounded-xl hover:bg-[#c94d2e] transition-all disabled:opacity-50"
+                      >
+                        {spotsSaving[g.id] ? "..." : "Сохранить"}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="flex flex-wrap gap-2 mb-6">
           {[
             { key: "all", label: "Все" },

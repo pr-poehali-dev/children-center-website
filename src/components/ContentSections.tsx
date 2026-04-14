@@ -123,6 +123,94 @@ export default function ContentSections() {
         </div>
       </section>
 
+      {/* БЕЗОПАСНОСТЬ */}
+      <section className="py-16 bg-[#f0f9f6]">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full text-sm text-[#2a8c6e] font-semibold mb-4 shadow-sm">
+              <span>🔒</span> Безопасность
+            </div>
+            <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-3">Ваш ребёнок под надёжной защитой</h2>
+            <p className="text-gray-500 max-w-xl mx-auto">Мы создали среду, где родители могут быть спокойны за своего малыша</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              { emoji: "📹", title: "Видеонаблюдение", desc: "Камеры во всех помещениях и на входе" },
+              { emoji: "🚨", title: "Пожарная система", desc: "Автоматическая сигнализация и датчики" },
+              { emoji: "🩺", title: "Курсы медпомощи", desc: "Весь персонал обучен первой помощи" },
+              { emoji: "🍎", title: "Сбалансированное питание", desc: "Полезное меню, разработанное с учётом возраста" },
+              { emoji: "🧼", title: "Чистота и кварцевание", desc: "Ежедневная уборка и обеззараживание воздуха" },
+              { emoji: "🚪", title: "Контроль доступа", desc: "Электронный замок — посторонние не войдут" },
+            ].map((item) => (
+              <div key={item.title} className="bg-white rounded-2xl p-5 shadow-sm flex gap-4 items-start hover:shadow-md transition-all">
+                <div className="text-3xl flex-shrink-0">{item.emoji}</div>
+                <div>
+                  <div className="font-bold text-gray-800 text-sm mb-1">{item.title}</div>
+                  <div className="text-xs text-gray-500 leading-relaxed">{item.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ДОРОЖКИ ПО ВОЗРАСТУ */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-[#fff0ed] px-4 py-2 rounded-full text-sm text-[#e85d3b] font-semibold mb-4">
+              <span>👶</span> Выберите путь
+            </div>
+            <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-3">Всё зависит от возраста ребёнка</h2>
+            <p className="text-gray-500 max-w-xl mx-auto">Для каждого возраста — своя программа и подход</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Малыши 1.5-3 */}
+            <div className="rounded-3xl overflow-hidden shadow-sm border-2 border-[#ffd6cc] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="bg-gradient-to-br from-[#fff0ed] to-[#ffe8e2] p-8">
+                <div className="text-5xl mb-4">🧸</div>
+                <div className="inline-block bg-[#e85d3b] text-white text-xs font-bold px-3 py-1 rounded-full mb-3">1,5 — 3 года</div>
+                <h3 className="font-pacifico text-2xl text-gray-800 mb-3">Малыши</h3>
+                <p className="text-gray-600 leading-relaxed mb-5">
+                  Первый шаг в большой мир — без слёз и стресса. Мягкая адаптация, забота и тепло — так, чтобы ребёнок полюбил детский сад с первого дня.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  {["Мягкая адаптация к коллективу", "Развитие речи и сенсорики", "Игровые занятия в уютной обстановке", "Индивидуальный подход к каждому малышу"].map(i => (
+                    <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
+                      <span className="text-[#e85d3b] font-bold">✓</span> {i}
+                    </li>
+                  ))}
+                </ul>
+                <div className="bg-white/60 rounded-2xl p-4 text-sm text-gray-600 italic">
+                  «Ваш малыш будет смеяться и играть — пока вы спокойно занимаетесь своими делами»
+                </div>
+              </div>
+            </div>
+            {/* Дошколята 3-7 */}
+            <div className="rounded-3xl overflow-hidden shadow-sm border-2 border-[#d4f0e8] hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="bg-gradient-to-br from-[#e8f8f3] to-[#d4f0e8] p-8">
+                <div className="text-5xl mb-4">⭐</div>
+                <div className="inline-block bg-[#2a8c6e] text-white text-xs font-bold px-3 py-1 rounded-full mb-3">3 — 7 лет</div>
+                <h3 className="font-pacifico text-2xl text-gray-800 mb-3">Дошколята</h3>
+                <p className="text-gray-600 leading-relaxed mb-5">
+                  Готовим к школе весело и эффективно. Ребёнок придёт в первый класс уверенным, умеющим читать, считать и дружить.
+                </p>
+                <ul className="space-y-2 mb-6">
+                  {["Качественная подготовка к школе", "Развитие логики и творчества", "Социальные навыки и общение", "Английский язык в игровой форме"].map(i => (
+                    <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
+                      <span className="text-[#2a8c6e] font-bold">✓</span> {i}
+                    </li>
+                  ))}
+                </ul>
+                <div className="bg-white/60 rounded-2xl p-4 text-sm text-gray-600 italic">
+                  «Ваш ребёнок пойдёт в школу готовым — а вы будете гордиться им с первого дня»
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* УСЛУГИ */}
       <section id="услуги" aria-labelledby="services-heading" className="py-20 bg-[#fdf9f5]">
         <div className="max-w-6xl mx-auto px-4">
@@ -245,6 +333,35 @@ export default function ContentSections() {
           <p className="text-center text-sm text-gray-400 mt-4">
             * Возможны скидки при оплате за полгода. Уточняйте по телефону.
           </p>
+        </div>
+      </section>
+
+      {/* СЕГОДНЯ В ЦЕНТРЕ */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-[#fff0ed] px-4 py-2 rounded-full text-sm text-[#e85d3b] font-semibold mb-4">
+              <span>📸</span> Живая жизнь центра
+            </div>
+            <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-3">Сегодня в центре</h2>
+            <p className="text-gray-500">Каждый день — новые эмоции и открытия</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { img: "https://cdn.poehali.dev/files/b7e139c8-93e0-4bbb-b9d3-83e343cd59db.png", caption: "Творческое занятие 🎨" },
+              { img: "https://cdn.poehali.dev/files/bb83b1db-3a9f-4e90-ab10-e6980a71620a.png", caption: "Утренняя зарядка 🌞" },
+              { img: "https://cdn.poehali.dev/files/3e522020-93c1-4155-ac37-1067785b8111.png", caption: "Учимся вместе 📚" },
+              { img: "https://cdn.poehali.dev/files/4b6ccfe2-5c36-4d8f-86a3-2d2d0ba4a2df.png", caption: "Весёлые игры 🎉" },
+            ].map((item) => (
+              <div key={item.img} className="relative group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <img src={item.img} alt={item.caption} className="w-full h-44 md:h-52 object-cover" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-semibold translate-y-full group-hover:translate-y-0 transition-all duration-300">
+                  {item.caption}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
