@@ -62,14 +62,17 @@ def handler(event: dict, context) -> dict:
     messenger_labels = {'telegram': 'Telegram', 'max': 'Макс'}
     messenger_label = messenger_labels.get(messenger, messenger)
 
+    checklist_note = "✅ Чек-лист по развитию ребёнка отправлен клиенту" if not shift_id else ""
+
     tg_text = (
         f"🐟 <b>Новая заявка — Рыбка Долли</b>\n\n"
         f"👤 <b>Имя:</b> {name}\n"
         f"📞 <b>Телефон:</b> {phone}\n"
         f"💬 <b>Мессенджер:</b> {messenger_label}\n"
         f"📚 <b>Услуга:</b> {service or 'не указана'}\n"
-        f"✉️ <b>Сообщение:</b> {message or 'не указано'}\n\n"
-        f"👉 Ответить: ribkadollli.ru/admin"
+        f"✉️ <b>Сообщение:</b> {message or 'не указано'}\n"
+        + (f"\n{checklist_note}\n" if checklist_note else "") +
+        f"\n👉 Ответить: ribkadollli.ru/admin"
     )
     send_telegram(tg_text)
 
