@@ -10,6 +10,7 @@ const SHIFTS = [
   {
     emoji: "📖",
     theme: "Сундук со сказками",
+    dates: "01.06 – 12.06",
     age: "7–9 лет",
     duration: "2 недели",
     slogan: "Волшебство, которое оживает в руках ребёнка",
@@ -25,6 +26,7 @@ const SHIFTS = [
   {
     emoji: "🍳",
     theme: "Вкусные открытия",
+    dates: "15.06 – 26.06",
     age: "7–12 лет",
     duration: "2 недели",
     slogan: "Гастрономическое путешествие по 5 континентам",
@@ -40,6 +42,7 @@ const SHIFTS = [
   {
     emoji: "🏴‍☠️",
     theme: "Мульти-драйв",
+    dates: "29.06 – 10.07",
     age: "7–10 лет",
     duration: "2 недели",
     slogan: "Ожившие мультфильмы, пиратские квесты и поиск сокровищ",
@@ -55,6 +58,7 @@ const SHIFTS = [
   {
     emoji: "📱",
     theme: "Поколение Альфа",
+    dates: "13.07 – 24.07",
     age: "10–14 лет",
     duration: "2 недели",
     slogan: "Гаджеты — в дело. Технологии, творчество и реальные навыки",
@@ -71,6 +75,7 @@ const SHIFTS = [
   {
     emoji: "🚀",
     theme: "Есть ли жизнь на Марсе?",
+    dates: "27.07 – 07.08",
     age: "10–14 лет",
     duration: "2 недели",
     slogan: "Космическая миссия: колонизируем Марс своими руками",
@@ -87,6 +92,7 @@ const SHIFTS = [
   {
     emoji: "🌍",
     theme: "Кругосветка",
+    dates: "10.08 – 21.08",
     age: "7–12 лет",
     duration: "2 недели",
     slogan: "Экспедиция в неизведанные уголки планеты",
@@ -102,6 +108,7 @@ const SHIFTS = [
   {
     emoji: "🔬",
     theme: "Лаборатория чудес",
+    dates: "24.08 – 28.08",
     age: "7–12 лет",
     duration: "1 неделя (интенсив)",
     slogan: "Физика и химия без скучных учебников",
@@ -163,21 +170,27 @@ export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampM
           </div>
 
           {/* Тематические смены */}
-          <h3 className="font-bold text-gray-800 text-lg mb-1">Тематические смены — каждая неделя новый мир:</h3>
+          <h3 className="font-bold text-gray-800 text-lg mb-1">Тематические смены. Каждая — новый мир, новые приключения.</h3>
           <p className="text-xs text-gray-400 mb-4">Нажмите на смену, чтобы узнать подробнее</p>
           <div className="grid grid-cols-2 gap-3 mb-6">
             {SHIFTS.map((s, i) => (
               <button
                 key={s.theme}
                 onClick={() => setActiveShift(activeShift === i ? null : i)}
-                className={`text-left rounded-2xl p-4 flex items-center gap-3 border-2 transition-all duration-200 ${
+                className={`text-left rounded-2xl p-3 flex flex-col gap-1.5 border-2 transition-all duration-200 ${
                   activeShift === i
                     ? "border-[#c45e10] bg-[#fff3e8] shadow-md"
                     : "border-transparent bg-[#fff3e8] hover:border-[#c45e10]/50"
                 }`}
               >
-                <span className="text-2xl flex-shrink-0">{s.emoji}</span>
-                <span className="font-bold text-gray-800 text-sm leading-snug">{s.theme}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl flex-shrink-0">{s.emoji}</span>
+                  <span className="font-bold text-gray-800 text-sm leading-snug">{s.theme}</span>
+                </div>
+                <div className="flex flex-wrap gap-1 pl-0.5">
+                  <span className="text-[10px] bg-white text-[#c45e10] font-semibold px-1.5 py-0.5 rounded-full leading-tight">📅 {s.dates}</span>
+                  <span className="text-[10px] bg-white text-gray-500 font-semibold px-1.5 py-0.5 rounded-full leading-tight">👤 {s.age}</span>
+                </div>
               </button>
             ))}
           </div>
