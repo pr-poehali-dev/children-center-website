@@ -43,6 +43,8 @@ def handler(event: dict, context) -> dict:
     service = body.get('service', '')
     message = body.get('message', '')
     shift_id = body.get('shift_id')
+    child_name = body.get('child_name', '')
+    child_age = body.get('child_age', '')
 
     conn = psycopg2.connect(os.environ['DATABASE_URL'])
     cur = conn.cursor()
@@ -69,10 +71,12 @@ def handler(event: dict, context) -> dict:
         f"👤 <b>Имя:</b> {name}\n"
         f"📞 <b>Телефон:</b> {phone}\n"
         f"💬 <b>Мессенджер:</b> {messenger_label}\n"
-        f"📚 <b>Услуга:</b> {service or 'не указана'}\n"
+        + (f"👶 <b>Ребёнок:</b> {child_name}\n" if child_name else "")
+        + (f"🎂 <b>Возраст:</b> {child_age}\n" if child_age else "")
+        + f"📚 <b>Услуга:</b> {service or 'не указана'}\n"
         f"✉️ <b>Сообщение:</b> {message or 'не указано'}\n"
-        + (f"\n{checklist_note}\n" if checklist_note else "") +
-        f"\n👉 Ответить: ribkadollli.ru/admin"
+        + (f"\n{checklist_note}\n" if checklist_note else "")
+        + f"\n👉 Ответить: ribkadollli.ru/admin"
     )
     send_telegram(tg_text)
 

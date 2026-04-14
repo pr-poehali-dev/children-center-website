@@ -16,7 +16,7 @@ interface ContactSectionProps {
 }
 
 export default function ContactSection({ scrollTo }: ContactSectionProps) {
-  const [formData, setFormData] = useState({ name: "", phone: "" });
+  const [formData, setFormData] = useState({ name: "", phone: "", child_name: "", child_age: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -88,6 +88,26 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
                   placeholder="+7 (___) ___-__-__"
                   className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
                 />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Имя ребёнка</label>
+                  <input
+                    type="text" value={formData.child_name}
+                    onChange={(e) => setFormData({ ...formData, child_name: e.target.value })}
+                    placeholder="Маша"
+                    className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1.5">Возраст ребёнка</label>
+                  <input
+                    type="text" value={formData.child_age}
+                    onChange={(e) => setFormData({ ...formData, child_age: e.target.value })}
+                    placeholder="5 лет"
+                    className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
+                  />
+                </div>
               </div>
               {error && <p className="text-center text-sm text-red-500">{error}</p>}
               <button type="submit" disabled={loading}
