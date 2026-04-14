@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const API_URL = "https://functions.poehali.dev/4d84314d-8994-40f2-80ad-a3feebbc162c";
 const SPOTS_API = "https://functions.poehali.dev/caca698d-af1f-4f52-aed6-1c3f2dd75e01";
 const SUMMER_API = "https://functions.poehali.dev/30e80ff2-8583-46f1-8f63-6a85949a514b";
+const GALLERY_API = "https://functions.poehali.dev/798430ed-8f2c-4403-a16b-21df7f1aae06";
 
 interface Application {
   id: number;
@@ -20,6 +21,8 @@ interface Group {
   group_name: string;
   spots_left: number;
 }
+
+interface GalleryPhoto { id: number; url: string; sort_order: number; }
 
 interface SummerShift {
   id: number;
@@ -67,6 +70,10 @@ export default function Admin() {
   const [summerShifts, setSummerShifts] = useState<SummerShift[]>([]);
   const [summerEditing, setSummerEditing] = useState<Record<number, { spots_left: string; total_spots: string }>>({});
   const [summerSaving, setSummerSaving] = useState<Record<number, boolean>>({});
+  const [gallery, setGallery] = useState<GalleryPhoto[]>([]);
+  const [galleryUploading, setGalleryUploading] = useState(false);
+  const [galleryDeleting, setGalleryDeleting] = useState<Record<number, boolean>>({});
+  const galleryInputRef = useRef<HTMLInputElement>(null);
 
   const fetchApps = useCallback(async (pwd: string) => {
     setLoading(true);
@@ -99,8 +106,37 @@ export default function Admin() {
     if (authed) {
       fetch(SPOTS_API).then((r) => r.json()).then(setGroups).catch(() => {});
       fetch(SUMMER_API).then((r) => r.json()).then(setSummerShifts).catch(() => {});
+      fetch(GALLERY_API).then((r) => r.json()).then(setGallery).catch(() => {});
     }
   }, [authed]);
+
+  const uploadGalleryPhoto = async (file: File) => {
+    setGalleryUploading(true);
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const base64 = (reader.result as string).split(',')[1];
+      const res = await fetch(GALLERY_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'upload', file: base64, content_type: file.type }),
+      });
+      const data = await res.json();
+      setGallery(prev => [...prev, { id: data.id, url: data.url, sort_order: prev.length + 1 }]);
+      setGalleryUploading(false);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const deleteGalleryPhoto = async (id: number) => {
+    setGalleryDeleting(p => ({ ...p, [id]: true }));
+    await fetch(GALLERY_API, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    setGallery(prev => prev.filter(p => p.id !== id));
+    setGalleryDeleting(p => ({ ...p, [id]: false }));
+  };
 
   const saveSpots = async (g: Group) => {
     const val = parseInt(spotsEditing[g.id] ?? String(g.spots_left));
@@ -247,6 +283,47 @@ export default function Admin() {
             </div>
           </div>
         )}
+
+        {/* ГАЛЕРЕЯ */}
+        <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+          <h2 className="font-bold text-gray-800 text-base mb-1">📸 Фото «Сегодня в центре»</h2>
+          <p className="text-xs text-gray-400 mb-4">Фотографии отображаются на главной странице сайта</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+            {gallery.map((photo) => (
+              <div key={photo.id} className="relative group rounded-xl overflow-hidden bg-gray-100 aspect-square">
+                <img src={photo.url} alt="" className="w-full h-full object-cover" />
+                <button
+                  onClick={() => deleteGalleryPhoto(photo.id)}
+                  disabled={galleryDeleting[photo.id]}
+                  className="absolute top-1.5 right-1.5 w-7 h-7 bg-red-500 text-white rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 flex items-center justify-center"
+                >
+                  {galleryDeleting[photo.id] ? "…" : "✕"}
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={() => galleryInputRef.current?.click()}
+              disabled={galleryUploading}
+              className="aspect-square rounded-xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center gap-1 text-gray-400 hover:border-[#e85d3b] hover:text-[#e85d3b] transition-all disabled:opacity-50"
+            >
+              {galleryUploading ? (
+                <span className="text-xs">Загрузка...</span>
+              ) : (
+                <>
+                  <span className="text-2xl">+</span>
+                  <span className="text-xs">Добавить фото</span>
+                </>
+              )}
+            </button>
+          </div>
+          <input
+            ref={galleryInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadGalleryPhoto(f); e.target.value = ''; }}
+          />
+        </div>
 
         {/* ЛЕТНИЕ СМЕНЫ */}
         {summerShifts.length > 0 && (

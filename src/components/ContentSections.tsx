@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+import FUNC2URL from "../../backend/func2url.json";
+
+interface GalleryPhoto { id: number; url: string; sort_order: number; }
 
 const PROMO_ACTIVE = new Date() < new Date("2026-05-15T23:59:59");
 
@@ -54,6 +57,14 @@ const gallery = [
 export default function ContentSections() {
   const [reviewIndex, setReviewIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [gallery, setGallery] = useState<GalleryPhoto[]>([]);
+
+  useEffect(() => {
+    fetch(FUNC2URL["gallery"])
+      .then(r => r.json())
+      .then(data => setGallery(data))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (paused) return;
@@ -347,14 +358,9 @@ export default function ContentSections() {
             <p className="text-gray-500">Каждый день — новые эмоции и открытия</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { img: "https://cdn.poehali.dev/files/b7e139c8-93e0-4bbb-b9d3-83e343cd59db.png", caption: "Творческое занятие 🎨" },
-              { img: "https://cdn.poehali.dev/files/bb83b1db-3a9f-4e90-ab10-e6980a71620a.png", caption: "Утренняя зарядка 🌞" },
-              { img: "https://cdn.poehali.dev/files/3e522020-93c1-4155-ac37-1067785b8111.png", caption: "Учимся вместе 📚" },
-              { img: "https://cdn.poehali.dev/files/4b6ccfe2-5c36-4d8f-86a3-2d2d0ba4a2df.png", caption: "Весёлые игры 🎉" },
-            ].map((item) => (
-              <div key={item.img} className="relative group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <img src={item.img} alt={item.caption} className="w-full h-44 md:h-52 object-cover" loading="lazy" />
+            {gallery.map((photo) => (
+              <div key={photo.id} className="relative group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <img src={photo.url} alt="Фото из жизни центра" className="w-full h-44 md:h-52 object-cover" loading="lazy" />
               </div>
             ))}
           </div>
