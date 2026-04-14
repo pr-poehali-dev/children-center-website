@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const navLinks = ["О центре", "Услуги", "Специалисты", "Галерея", "Прайс", "Отзывы", "Контакты"];
 
@@ -10,6 +10,66 @@ const services = [
   { title: "Английский язык" },
   { title: "Летний клуб" },
 ];
+
+const ADMIN_PASSWORD = "dolly2026";
+
+function FooterAdmin() {
+  const [clicks, setClicks] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [pwd, setPwd] = useState("");
+  const [error, setError] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleDotClick = () => {
+    const next = clicks + 1;
+    setClicks(next);
+    if (next >= 5) { setOpen(true); setClicks(0); setTimeout(() => inputRef.current?.focus(), 100); }
+  };
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (pwd === ADMIN_PASSWORD) {
+      window.location.href = "/admin";
+    } else {
+      setError(true);
+      setPwd("");
+    }
+  };
+
+  return (
+    <>
+      <div className="mt-8 pt-6 border-t border-gray-700 flex justify-center">
+        <button
+          onClick={handleDotClick}
+          className="w-2 h-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors"
+          aria-hidden="true"
+          tabIndex={-1}
+        />
+      </div>
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => { setOpen(false); setPwd(""); setError(false); }}>
+          <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-xs shadow-2xl" onClick={e => e.stopPropagation()}>
+            <p className="text-gray-400 text-sm text-center mb-4">Вход</p>
+            <form onSubmit={handleLogin} className="space-y-3">
+              <input
+                ref={inputRef}
+                type="password"
+                value={pwd}
+                onChange={e => { setPwd(e.target.value); setError(false); }}
+                placeholder="Пароль"
+                className="w-full px-4 py-3 bg-gray-800 text-white rounded-xl border border-gray-700 focus:outline-none focus:border-gray-500 text-sm"
+              />
+              {error && <p className="text-red-400 text-xs text-center">Неверный пароль</p>}
+              <button type="submit" className="w-full py-2.5 bg-gray-700 text-gray-200 text-sm font-semibold rounded-xl hover:bg-gray-600 transition-all">
+                Войти
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
 interface ContactSectionProps {
   scrollTo: (id: string) => void;
@@ -234,6 +294,7 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
               <span className="block text-xs text-gray-600 mt-1">г. Керчь, ул. Циолковского, 12</span>
             </div>
           </div>
+          <FooterAdmin />
         </div>
       </footer>
     </>
