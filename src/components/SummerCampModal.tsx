@@ -39,9 +39,13 @@ export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampM
             </p>
           </div>
 
-          {/* Фото-заглушка */}
-          <div className="w-full h-48 bg-[#fff3e8] rounded-2xl flex items-center justify-center mb-6 text-gray-400 text-sm border-2 border-dashed border-[#f0b882]">
-            📸 Фото из лагеря — скоро будет
+          {/* Фото */}
+          <div className="w-full rounded-2xl overflow-hidden mb-6 shadow-sm">
+            <img
+              src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/35403e3b-0707-4044-8d1d-70e16fde3b68.png"
+              alt="Дети летнего лагеря РыбкаДолли на прогулке у фонтана"
+              className="w-full h-56 object-cover object-top"
+            />
           </div>
 
           {/* Тематические смены */}

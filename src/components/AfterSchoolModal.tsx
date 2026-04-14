@@ -39,9 +39,13 @@ export default function AfterSchoolModal({ open, onClose, scrollTo }: AfterSchoo
             </p>
           </div>
 
-          {/* Фото-заглушка */}
-          <div className="w-full h-48 bg-[#f3eeff] rounded-2xl flex items-center justify-center mb-6 text-gray-400 text-sm border-2 border-dashed border-[#c9b8f0]">
-            📸 Фото продлёнки — скоро будет
+          {/* Фото */}
+          <div className="w-full rounded-2xl overflow-hidden mb-6 shadow-sm">
+            <img
+              src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/5bb071ed-1eee-40dc-93f6-18a01f7ab2fe.jpg"
+              alt="Педагог помогает ребёнку с домашним заданием в группе продлённого дня"
+              className="w-full h-56 object-cover object-top"
+            />
           </div>
 
           {/* Преимущества */}
