@@ -58,7 +58,16 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
             <div className="bg-[#e8f8f3] rounded-3xl p-10 text-center">
               <div className="text-5xl mb-4">🎉</div>
               <h3 className="font-pacifico text-2xl text-gray-800 mb-2">Заявка принята!</h3>
-              <p className="text-gray-600">Мы позвоним вам в ближайшее время. Ждём вас в гости!</p>
+              <p className="text-gray-600 mb-6">Мы позвоним вам в ближайшее время. Ждём вас в гости!</p>
+              <a
+                href="https://disk.yandex.ru/i/SIR462VgCvSWFA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#e85d3b] text-white font-bold rounded-2xl shadow-md hover:bg-[#c94d2e] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                📥 Открыть и скачать чек-лист
+              </a>
+              <p className="text-xs text-gray-400 mt-3">Ваш подарок — чек-лист по развитию ребёнка</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="bg-[#fdf9f5] rounded-3xl p-8 shadow-sm space-y-4">
