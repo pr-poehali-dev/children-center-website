@@ -1,4 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import FUNC2URL from "../../backend/func2url.json";
+
+interface ShiftSpots {
+  id: number;
+  spots_left: number;
+  total_spots: number;
+}
 
 interface SummerCampModalProps {
   open: boolean;
@@ -125,6 +132,18 @@ const SHIFTS = [
 
 export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampModalProps) {
   const [activeShift, setActiveShift] = useState<number | null>(null);
+  const [spots, setSpots] = useState<ShiftSpots[]>([]);
+
+  useEffect(() => {
+    if (!open) return;
+    fetch(FUNC2URL["summer-shifts"])
+      .then(r => r.json())
+      .then(data => setSpots(data))
+      .catch(() => {});
+  }, [open]);
+
+  const getSpots = (idx: number): ShiftSpots | undefined =>
+    spots.find(s => s.id === idx + 1);
 
   if (!open) return null;
 
@@ -190,6 +209,17 @@ export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampM
                 <div className="flex flex-wrap gap-1 pl-0.5">
                   <span className="text-[10px] bg-white text-[#c45e10] font-semibold px-1.5 py-0.5 rounded-full leading-tight">📅 {s.dates}</span>
                   <span className="text-[10px] bg-white text-gray-500 font-semibold px-1.5 py-0.5 rounded-full leading-tight">👤 {s.age}</span>
+                  {(() => {
+                    const sp = getSpots(i);
+                    if (!sp) return null;
+                    const pct = sp.total_spots > 0 ? (sp.spots_left / sp.total_spots) * 100 : 0;
+                    const color = sp.spots_left === 0 ? "bg-gray-200 text-gray-400" : pct <= 30 ? "bg-red-100 text-red-600" : "bg-green-100 text-green-700";
+                    return (
+                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-tight ${color}`}>
+                        {sp.spots_left === 0 ? "Мест нет" : `🔥 ${sp.spots_left} мест`}
+                      </span>
+                    );
+                  })()}
                 </div>
               </button>
             ))}
@@ -212,6 +242,32 @@ export default function SummerCampModal({ open, onClose, scrollTo }: SummerCampM
                 <p className="text-sm text-[#c45e10] font-semibold italic mt-2">«{SHIFTS[activeShift].slogan}»</p>
               </div>
               <div className="bg-white px-5 py-4 space-y-4">
+                {(() => {
+                  const sp = getSpots(activeShift);
+                  if (!sp) return null;
+                  const pct = sp.total_spots > 0 ? (sp.spots_left / sp.total_spots) * 100 : 0;
+                  const isFull = sp.spots_left === 0;
+                  const isLow = pct <= 30 && !isFull;
+                  return (
+                    <div className={`rounded-xl p-3 ${isFull ? "bg-gray-100" : isLow ? "bg-red-50" : "bg-green-50"}`}>
+                      <div className="flex justify-between items-center mb-1.5">
+                        <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">Свободные места</span>
+                        <span className={`text-sm font-bold ${isFull ? "text-gray-400" : isLow ? "text-red-600" : "text-green-700"}`}>
+                          {isFull ? "Мест нет" : `${sp.spots_left} из ${sp.total_spots}`}
+                        </span>
+                      </div>
+                      <div className="w-full bg-white rounded-full h-2 overflow-hidden">
+                        <div
+                          className={`h-2 rounded-full transition-all ${isFull ? "w-0" : isLow ? "bg-red-400" : "bg-green-400"}`}
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      {isLow && !isFull && (
+                        <p className="text-[11px] text-red-500 font-semibold mt-1">Торопитесь — осталось мало мест!</p>
+                      )}
+                    </div>
+                  );
+                })()}
                 <div>
                   <div className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Что делаем:</div>
                   <ul className="space-y-1.5">

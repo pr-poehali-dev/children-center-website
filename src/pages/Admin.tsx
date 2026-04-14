@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 const API_URL = "https://functions.poehali.dev/4d84314d-8994-40f2-80ad-a3feebbc162c";
 const SPOTS_API = "https://functions.poehali.dev/caca698d-af1f-4f52-aed6-1c3f2dd75e01";
+const SUMMER_API = "https://functions.poehali.dev/30e80ff2-8583-46f1-8f63-6a85949a514b";
 
 interface Application {
   id: number;
@@ -17,6 +18,15 @@ interface Application {
 interface Group {
   id: number;
   group_name: string;
+  spots_left: number;
+}
+
+interface SummerShift {
+  id: number;
+  theme: string;
+  dates: string;
+  age: string;
+  total_spots: number;
   spots_left: number;
 }
 
@@ -54,6 +64,9 @@ export default function Admin() {
   const [groups, setGroups] = useState<Group[]>([]);
   const [spotsEditing, setSpotsEditing] = useState<Record<number, string>>({});
   const [spotsSaving, setSpotsSaving] = useState<Record<number, boolean>>({});
+  const [summerShifts, setSummerShifts] = useState<SummerShift[]>([]);
+  const [summerEditing, setSummerEditing] = useState<Record<number, { spots_left: string; total_spots: string }>>({});
+  const [summerSaving, setSummerSaving] = useState<Record<number, boolean>>({});
 
   const fetchApps = useCallback(async (pwd: string) => {
     setLoading(true);
@@ -85,6 +98,7 @@ export default function Admin() {
   useEffect(() => {
     if (authed) {
       fetch(SPOTS_API).then((r) => r.json()).then(setGroups).catch(() => {});
+      fetch(SUMMER_API).then((r) => r.json()).then(setSummerShifts).catch(() => {});
     }
   }, [authed]);
 
@@ -100,6 +114,22 @@ export default function Admin() {
     setGroups((prev) => prev.map((gr) => gr.id === g.id ? { ...gr, spots_left: val } : gr));
     setSpotsEditing((p) => { const n = { ...p }; delete n[g.id]; return n; });
     setSpotsSaving((p) => ({ ...p, [g.id]: false }));
+  };
+
+  const saveSummerShift = async (s: SummerShift) => {
+    const ed = summerEditing[s.id];
+    const spots_left = parseInt(ed?.spots_left ?? String(s.spots_left));
+    const total_spots = parseInt(ed?.total_spots ?? String(s.total_spots));
+    if (isNaN(spots_left) || isNaN(total_spots) || spots_left < 0 || total_spots < 0) return;
+    setSummerSaving((p) => ({ ...p, [s.id]: true }));
+    await fetch(SUMMER_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: s.id, spots_left, total_spots }),
+    });
+    setSummerShifts((prev) => prev.map((sh) => sh.id === s.id ? { ...sh, spots_left, total_spots } : sh));
+    setSummerEditing((p) => { const n = { ...p }; delete n[s.id]; return n; });
+    setSummerSaving((p) => ({ ...p, [s.id]: false }));
   };
 
   const handleLogin = (e: React.FormEvent) => {
@@ -214,6 +244,76 @@ export default function Admin() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+
+        {/* ЛЕТНИЕ СМЕНЫ */}
+        {summerShifts.length > 0 && (
+          <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
+            <h2 className="font-bold text-gray-800 text-base mb-1">🌞 Летние смены 2026 — свободные места</h2>
+            <p className="text-xs text-gray-400 mb-4">Изменения отображаются сразу на сайте для посетителей</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {summerShifts.map((s) => {
+                const ed = summerEditing[s.id];
+                const curFree = parseInt(ed?.spots_left ?? String(s.spots_left));
+                const curTotal = parseInt(ed?.total_spots ?? String(s.total_spots));
+                const pct = curTotal > 0 ? Math.round((curFree / curTotal) * 100) : 0;
+                const isLow = pct <= 30 && curFree > 0;
+                const isDirty = ed !== undefined;
+                return (
+                  <div key={s.id} className="bg-[#fdf9f5] rounded-xl p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <div className="text-sm font-bold text-gray-800">{s.theme}</div>
+                        <div className="text-xs text-gray-400">{s.dates} · {s.age}</div>
+                      </div>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${curFree === 0 ? "bg-gray-200 text-gray-500" : isLow ? "bg-red-100 text-red-600" : "bg-green-100 text-green-700"}`}>
+                        {curFree === 0 ? "Мест нет" : `${curFree} мест`}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex-1">
+                        <div className="text-[10px] text-gray-400 mb-1">Свободно</div>
+                        <input
+                          type="number"
+                          min={0}
+                          max={999}
+                          value={ed?.spots_left ?? s.spots_left}
+                          onChange={(e) => setSummerEditing((p) => ({ ...p, [s.id]: { spots_left: e.target.value, total_spots: ed?.total_spots ?? String(s.total_spots) } }))}
+                          className="w-full px-3 py-2 text-base font-bold text-center border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c45e10]/30 focus:border-[#c45e10]"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-[10px] text-gray-400 mb-1">Всего мест</div>
+                        <input
+                          type="number"
+                          min={1}
+                          max={999}
+                          value={ed?.total_spots ?? s.total_spots}
+                          onChange={(e) => setSummerEditing((p) => ({ ...p, [s.id]: { spots_left: ed?.spots_left ?? String(s.spots_left), total_spots: e.target.value } }))}
+                          className="w-full px-3 py-2 text-base font-bold text-center border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#c45e10]/30 focus:border-[#c45e10]"
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full bg-gray-100 rounded-full h-1.5 mb-3 overflow-hidden">
+                      <div
+                        className={`h-1.5 rounded-full transition-all ${curFree === 0 ? "w-0" : isLow ? "bg-red-400" : "bg-green-400"}`}
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    {isDirty && (
+                      <button
+                        onClick={() => saveSummerShift(s)}
+                        disabled={summerSaving[s.id]}
+                        className="w-full py-2 bg-[#c45e10] text-white text-sm font-bold rounded-xl hover:bg-[#a34d0c] transition-all disabled:opacity-50"
+                      >
+                        {summerSaving[s.id] ? "Сохраняю..." : "Сохранить"}
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
