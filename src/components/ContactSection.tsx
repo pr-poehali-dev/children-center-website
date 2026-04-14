@@ -16,7 +16,7 @@ interface ContactSectionProps {
 }
 
 export default function ContactSection({ scrollTo }: ContactSectionProps) {
-  const [formData, setFormData] = useState({ name: "", phone: "", child_name: "", child_age: "" });
+  const [formData, setFormData] = useState({ name: "", phone: "", child_name: "", child_age: "", service: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -107,6 +107,25 @@ export default function ContactSection({ scrollTo }: ContactSectionProps) {
                     placeholder="5 лет"
                     className="w-full px-4 py-3 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#e85d3b]/30 focus:border-[#e85d3b] transition-all"
                   />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Интересующая услуга</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {services.map((s) => (
+                    <button
+                      key={s.title}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, service: formData.service === s.title ? "" : s.title })}
+                      className={`px-3 py-2.5 rounded-xl text-sm font-semibold text-left border-2 transition-all ${
+                        formData.service === s.title
+                          ? "border-[#e85d3b] bg-[#fff0ed] text-[#e85d3b]"
+                          : "border-transparent bg-white text-gray-600 hover:border-[#e85d3b]/40"
+                      }`}
+                    >
+                      {s.title}
+                    </button>
+                  ))}
                 </div>
               </div>
               {error && <p className="text-center text-sm text-red-500">{error}</p>}
