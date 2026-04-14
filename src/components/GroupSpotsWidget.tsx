@@ -65,7 +65,7 @@ export default function GroupSpotsWidget({ scrollTo }: GroupSpotsWidgetProps) {
                   {g.spots_left}
                 </div>
                 <div className="text-xs text-gray-500 mt-1">
-                  {g.spots_left === 1 ? "место" : g.spots_left >= 2 && g.spots_left <= 4 ? "места" : "мест"} на сентябрь
+                  {g.spots_left === 1 ? "свободное место" : g.spots_left >= 2 && g.spots_left <= 4 ? "свободных места" : "свободных мест"}
                 </div>
               </div>
             );
