@@ -13,7 +13,7 @@ export default function SynergyBlock({ scrollTo }: SynergyBlockProps) {
           <h2 className="font-pacifico text-3xl md:text-4xl text-gray-800 mb-4">Растём вместе с вами</h2>
           <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">
             Ваш ребёнок ходил к нам в группу раннего развития? Теперь он может пойти
-            в подготовительную группу, а летом — в лагерь с любимыми воспитателями.
+            в подготовительную группу, а летом — в наш клуб с любимыми воспитателями.
             Мы знаем привычки вашего ребёнка, и ему не придётся привыкать заново.
             <span className="font-bold text-[#2a8c6e]"> Непрерывность — наша забота о вас.</span>
           </p>
@@ -48,7 +48,7 @@ export default function SynergyBlock({ scrollTo }: SynergyBlockProps) {
                 step: "3",
                 emoji: "☀️",
                 age: "Лето",
-                title: "Летний лагерь",
+                title: "Летний клуб",
                 desc: "Каждое лето — новые приключения с теми же любимыми педагогами.",
                 color: "#c45e10",
                 bg: "#fff3e8",

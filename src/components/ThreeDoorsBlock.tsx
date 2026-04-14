@@ -104,7 +104,7 @@ export default function ThreeDoorsBlock({ scrollTo, onOpenAfterSchool, onOpenSum
             </div>
             <div className="bg-white p-6">
               <h3 className="font-pacifico text-xl text-gray-800 mb-2 group-hover:text-[#c45e10] transition-colors">
-                Летний лагерь
+                Летний клуб
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-4">
                 Приключения, друзья и никаких гаджетов. Каждая неделя — новая тема.
