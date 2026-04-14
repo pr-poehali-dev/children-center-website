@@ -217,7 +217,7 @@ export default function Admin() {
         {/* УПРАВЛЕНИЕ МЕСТАМИ */}
         {groups.length > 0 && (
           <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
-            <h2 className="font-bold text-gray-800 text-base mb-4">⏳ Свободные места на сентябрь</h2>
+            <h2 className="font-bold text-gray-800 text-base mb-4">⏳ Свободных мест</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {groups.map((g) => (
                 <div key={g.id} className="bg-[#fdf9f5] rounded-xl p-4">
