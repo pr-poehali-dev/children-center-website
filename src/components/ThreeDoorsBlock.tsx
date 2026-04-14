@@ -27,12 +27,14 @@ export default function ThreeDoorsBlock({ scrollTo, onOpenAfterSchool, onOpenSum
             onClick={() => scrollTo("услуги")}
             className="group text-left rounded-3xl overflow-hidden shadow-sm border-2 border-transparent hover:border-[#e85d3b] hover:shadow-xl transition-all duration-300 hover:-translate-y-2 focus:outline-none"
           >
-            <div className="h-52 bg-gradient-to-br from-[#fff0ed] to-[#fde8e2] flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-8xl opacity-20 group-hover:opacity-30 transition-opacity">🧸</span>
-              </div>
-              <div className="relative z-10 text-center px-6">
-                <div className="text-5xl mb-2">🧸</div>
+            <div className="h-52 relative overflow-hidden">
+              <img
+                src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/37c5430f-ae8d-47ec-96a9-c3de831c366b.jpg"
+                alt="Воспитатель обнимает детей в детском саду Рыбка Долли"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              <div className="absolute bottom-3 left-4">
                 <div className="inline-block bg-[#e85d3b] text-white text-xs font-bold px-3 py-1 rounded-full">
                   1,5 — 7 лет
                 </div>
@@ -56,12 +58,14 @@ export default function ThreeDoorsBlock({ scrollTo, onOpenAfterSchool, onOpenSum
             onClick={onOpenAfterSchool}
             className="group text-left rounded-3xl overflow-hidden shadow-sm border-2 border-transparent hover:border-[#6b3fc4] hover:shadow-xl transition-all duration-300 hover:-translate-y-2 focus:outline-none"
           >
-            <div className="h-52 bg-gradient-to-br from-[#f3eeff] to-[#e8e0f9] flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-8xl opacity-20 group-hover:opacity-30 transition-opacity">📚</span>
-              </div>
-              <div className="relative z-10 text-center px-6">
-                <div className="text-5xl mb-2">📚</div>
+            <div className="h-52 relative overflow-hidden">
+              <img
+                src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/5bb071ed-1eee-40dc-93f6-18a01f7ab2fe.jpg"
+                alt="Педагог помогает ребёнку с домашним заданием в продлёнке"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              <div className="absolute bottom-3 left-4">
                 <div className="inline-block bg-[#6b3fc4] text-white text-xs font-bold px-3 py-1 rounded-full">
                   1 — 4 класс
                 </div>
@@ -85,12 +89,14 @@ export default function ThreeDoorsBlock({ scrollTo, onOpenAfterSchool, onOpenSum
             onClick={onOpenSummerCamp}
             className="group text-left rounded-3xl overflow-hidden shadow-sm border-2 border-transparent hover:border-[#c45e10] hover:shadow-xl transition-all duration-300 hover:-translate-y-2 focus:outline-none"
           >
-            <div className="h-52 bg-gradient-to-br from-[#fff3e8] to-[#fde8d0] flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-8xl opacity-20 group-hover:opacity-30 transition-opacity">☀️</span>
-              </div>
-              <div className="relative z-10 text-center px-6">
-                <div className="text-5xl mb-2">☀️</div>
+            <div className="h-52 relative overflow-hidden">
+              <img
+                src="https://cdn.poehali.dev/projects/ea3a12a1-1eaf-439c-b026-77bfc65eb6b6/bucket/35403e3b-0707-4044-8d1d-70e16fde3b68.png"
+                alt="Дети летнего лагеря РыбкаДолли на прогулке"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              <div className="absolute bottom-3 left-4">
                 <div className="inline-block bg-[#c45e10] text-white text-xs font-bold px-3 py-1 rounded-full">
                   Июнь — Август
                 </div>
