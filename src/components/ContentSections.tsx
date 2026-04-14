@@ -355,10 +355,6 @@ export default function ContentSections() {
             ].map((item) => (
               <div key={item.img} className="relative group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <img src={item.img} alt={item.caption} className="w-full h-44 md:h-52 object-cover" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-semibold translate-y-full group-hover:translate-y-0 transition-all duration-300">
-                  {item.caption}
-                </div>
               </div>
             ))}
           </div>
