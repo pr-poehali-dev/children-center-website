@@ -222,6 +222,11 @@ export default function ContentSections() {
         </div>
       </section>
 
+      {/* Якоря для Яндекс.Директ */}
+      <span id="детский-сад" style={{ position: 'relative', top: '-80px', display: 'block', visibility: 'hidden' }} aria-hidden="true" />
+      <span id="продленный-день" style={{ position: 'relative', top: '-80px', display: 'block', visibility: 'hidden' }} aria-hidden="true" />
+      <span id="летний-клуб" style={{ position: 'relative', top: '-80px', display: 'block', visibility: 'hidden' }} aria-hidden="true" />
+
       {/* УСЛУГИ */}
       <section id="услуги" aria-labelledby="services-heading" className="py-20 bg-[#fdf9f5]">
         <div className="max-w-6xl mx-auto px-4">
